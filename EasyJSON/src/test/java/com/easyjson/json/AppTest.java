@@ -15,6 +15,6 @@ public class AppTest extends TestCase {
 		StringWriter out = new StringWriter();
 		Map map = new HashMap();
 		JSONObject.writeJSONString(map, out);
-		System.out.println(out.toString());
+		System.out.println(out);
 	}
 }
