@@ -4,21 +4,28 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-
 import com.easyjson.common.IJSONCostants;
+import com.easyjson.json.operation.IJSONOperation;
 
-public class JSONObject extends HashMap implements IJSONOperation {
+/**
+ * 
+ * @author Andrea Cosentino<ancosen@gmail.com>
+ *
+ */
 
-	private static final long serialVersionUID = -503443796854799292L;
+public class JSONEncoder extends HashMap implements IJSONOperation {
 
-	public JSONObject() {
+	private static final long serialVersionUID = 1L;
+
+	public JSONEncoder() {
 		super();
 	}
 
 	public static void writeJSONString(Map map, Writer out) throws IOException {
-		JSONObject json = new JSONObject();
+		if (map == null)
+			return;
+		JSONEncoder json = new JSONEncoder();
 		json.openJSONObject(out);
 		Iterator iterator = map.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -29,6 +36,27 @@ public class JSONObject extends HashMap implements IJSONOperation {
 			}
 		}
 		json.closeJSONObject(out);
+	}
+
+	public void write(Object object, Object object2, Writer out)
+			throws IOException {
+		this.quotationMarkJSONElement(out);
+		out.write(String.valueOf(object));
+		this.quotationMarkJSONElement(out);
+		this.colonJSONElement(out);
+		new ParseValue(object2, out, this).parseValue();
+	}
+
+	public void addJSONElement(Object object, Object object2, Writer out)
+			throws IOException {
+		this.openJSONElement(out);
+		this.write(object, object2, out);
+		this.closeJSONElement(out);
+	}
+
+	public void addJSONMapElement(Object object, Object object2, Writer out)
+			throws IOException {
+		this.write(object, object2, out);
 	}
 
 	public void openJSONObject(Writer out) throws IOException {
@@ -58,64 +86,4 @@ public class JSONObject extends HashMap implements IJSONOperation {
 	public void quotationMarkJSONElement(Writer out) throws IOException {
 		out.write(IJSONCostants.QUOTATION_MARK);
 	}
-
-	public void write(Object object, Object object2, Writer out)
-			throws IOException {
-		this.quotationMarkJSONElement(out);
-		out.write(String.valueOf(object));
-		this.quotationMarkJSONElement(out);
-		this.colonJSONElement(out);
-		this.parseValue(object2, out);
-	}
-
-	public void addJSONElement(Object object, Object object2, Writer out)
-			throws IOException {
-		this.openJSONElement(out);
-		this.write(object, object2, out);
-		this.closeJSONElement(out);
-	}
-	
-	public void addJSONMapElement(Object object, Object object2, Writer out)
-			throws IOException {
-		this.write(object, object2, out);
-	}
-
-	public void parseValue(Object obj, Writer out) throws IOException {
-		if (obj instanceof String) {
-			this.quotationMarkJSONElement(out);
-			out.write(String.valueOf(obj));
-			this.quotationMarkJSONElement(out);
-		} else if (obj instanceof List) {
-			this.openJSONObject(out);
-			Iterator iterator = ((List) obj).iterator();
-			while (iterator.hasNext()) {
-				Object element = iterator.next();
-				if (element instanceof String) {
-					this.quotationMarkJSONElement(out);
-					out.write(String.valueOf(element));
-					this.quotationMarkJSONElement(out);
-				} else {
-					out.write(String.valueOf(element));
-				}
-				if (iterator.hasNext()) {
-					this.commaJSONElement(out);
-				}
-			}
-			this.closeJSONObject(out);
-		} 
-		else if (obj instanceof Map){
-			Iterator iterator = ((HashMap) obj).entrySet().iterator();
-			this.openJSONElement(out);
-			while (iterator.hasNext()) {
-				Map.Entry entry = (Map.Entry) iterator.next();
-				this.addJSONMapElement(entry.getKey(), entry.getValue(), out);
-				if (iterator.hasNext()) {
-					this.commaJSONElement(out);
-				}
-			}
-			this.closeJSONElement(out);
-		}
-		else out.write(String.valueOf(obj));
-	}
-
 }

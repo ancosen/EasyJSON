@@ -1,5 +1,11 @@
 package com.easyjson.common;
 
+/**
+ * 
+ * @author Andrea Cosentino<ancosen@gmail.com>
+ *
+ */
+
 public class HTMLReplacementChars {
 	private static final String[] REPLACEMENT_CHARS;
 	private static final String[] HTML_SAFE_REPLACEMENT_CHARS;
