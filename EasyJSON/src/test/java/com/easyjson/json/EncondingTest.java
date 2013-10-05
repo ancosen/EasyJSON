@@ -76,6 +76,37 @@ public class EncondingTest extends TestCase {
 		System.out.println(out);
 	}
 	
+	public void testComplex() throws IOException{
+		StringWriter out = new StringWriter();
+		Map map = new HashMap(); 
+		Map map1 = new HashMap();
+		Map map2 = new HashMap();
+		Map map3 = new HashMap();
+		
+		List elementLusso = new ArrayList();
+		elementLusso.add("BMW");
+		elementLusso.add("Mercedes");
+		elementLusso.add("Ferrari");
+		elementLusso.add("Lamborghini");
+		List elementPlebe = new ArrayList();
+		List elementAuto = new ArrayList();
+		Map mapFiat = new HashMap();
+		mapFiat.put("Modelli", elementPlebe);
+		elementPlebe.add("Punto");
+		elementPlebe.add("Stilo");
+		elementPlebe.add("Multipla");
+		elementAuto.add("Motore");
+		elementAuto.add("Pistone");
+		elementAuto.add("Albero Motore");
+		map2.put("Marchi Lusso", elementLusso);
+		map1.put("Categoria Lusso", map2);
+		map1.put("Fiat", mapFiat);
+		map.put("Lista elementi", elementAuto);
+		map.put("Auto", map1);
+		JSONEncoder.writeJSONString(map, out);
+		System.out.println(out);
+	}
+	
 	public void testNull() throws IOException{
 		StringWriter out = new StringWriter();
 		Map map = null;
