@@ -35,8 +35,8 @@ public class EncondingTest extends TestCase {
 		p.add(-26.19);
 		List p1 = new ArrayList();
 		p1.add("Hello");
-		p1.add("Idiot");
-		p1.add("Stupid");
+		p1.add("Ciao");
+		p1.add("Salut");
 		Map map = new HashMap();
 		map.put("Id", 29);
 		map.put("List1", p);
