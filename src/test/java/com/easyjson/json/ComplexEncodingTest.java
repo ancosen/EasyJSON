@@ -60,5 +60,28 @@ public class ComplexEncodingTest extends TestCase {
 		JSONEncoder.toJSONString(m1, out);
 		System.out.println(out);
 	}
+	
+	public void testComplex3() throws IOException {
+		StringWriter out = new StringWriter();
+		Map m1 = new LinkedHashMap();
+		List l2 = new LinkedList();
+		List l3 = new LinkedList();
+		List l1 = new LinkedList();
+
+		l2.add("v11");
+		l2.add("v12");
+		l2.add("v13");
+		l3.add("v21");
+		l3.add("v22");
+		l3.add("v23");
+		l1.add("v21");
+		l1.add("v22");
+		l1.add("v23");
+		m1.put("root1", l1);
+		m1.put("root2", l2);
+		m1.put("root3", l3);
+		JSONEncoder.toJSONString(m1, out);
+		System.out.println(out);
+	}
 
 }
