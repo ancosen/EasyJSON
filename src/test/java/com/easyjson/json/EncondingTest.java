@@ -23,7 +23,7 @@ public class EncondingTest extends TestCase {
 		Map map = new HashMap();
 		map.put("Id", 29);
 		map.put("type","MIME");
-		JSONEncoder.writeJSONString(map, out);
+		JSONEncoder.toJSONString(map, out);
 		System.out.println(out);
 	}
 	
@@ -42,7 +42,7 @@ public class EncondingTest extends TestCase {
 		map.put("List1", p);
 		map.put("List2", p1);
 		map.put("type","MIME");
-		JSONEncoder.writeJSONString(map, out);
+		JSONEncoder.toJSONString(map, out);
 		System.out.println(out);
 	}
 	
@@ -63,7 +63,7 @@ public class EncondingTest extends TestCase {
 		map1.put("Servlet", map2);
 		map.put("Root",map1);
 		
-		JSONEncoder.writeJSONString(map, out);
+		JSONEncoder.toJSONString(map, out);
 		System.out.println(out);
 	}
 	
@@ -72,7 +72,7 @@ public class EncondingTest extends TestCase {
 		Map map = new LinkedHashMap();
 		map.put("userName", "Peppe");
 		map.put("ID", new Integer(12));
-		JSONEncoder.writeJSONString(map, out);
+		JSONEncoder.toJSONString(map, out);
 		System.out.println(out);
 	}
 	
@@ -91,26 +91,26 @@ public class EncondingTest extends TestCase {
 		List elementPlebe = new ArrayList();
 		List elementAuto = new ArrayList();
 		Map mapFiat = new HashMap();
-		mapFiat.put("Modelli", elementPlebe);
+		mapFiat.put("Models", elementPlebe);
 		elementPlebe.add("Punto");
 		elementPlebe.add("Stilo");
 		elementPlebe.add("Multipla");
-		elementAuto.add("Motore");
-		elementAuto.add("Pistone");
-		elementAuto.add("Albero Motore");
-		map2.put("Marchi Lusso", elementLusso);
-		map1.put("Categoria Lusso", map2);
+		elementAuto.add("Motor");
+		elementAuto.add("Pistons");
+		elementAuto.add("Tires");
+		map2.put("Luxury", elementLusso);
+		map1.put("Luxury Category", map2);
 		map1.put("Fiat", mapFiat);
 		map.put("Lista elementi", elementAuto);
 		map.put("Auto", map1);
-		JSONEncoder.writeJSONString(map, out);
+		JSONEncoder.toJSONString(map, out);
 		System.out.println(out);
 	}
 	
 	public void testNull() throws IOException{
 		StringWriter out = new StringWriter();
 		Map map = null;
-		JSONEncoder.writeJSONString(map, out);
+		JSONEncoder.toJSONString(map, out);
 		System.out.println(out);
 	}
 

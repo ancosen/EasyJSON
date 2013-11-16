@@ -22,7 +22,7 @@ public class JSONEncoder extends HashMap implements IJSONOperation {
 		super();
 	}
 
-	public static void writeJSONString(Map map, Writer out) throws IOException {
+	public static void toJSONString(Map map, Writer out) throws IOException {
 		if (map == null)
 			return;
 		JSONEncoder json = new JSONEncoder();
