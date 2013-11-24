@@ -1,4 +1,4 @@
-package com.easyjson.json;
+package com.easyjson.json.encoder;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -8,12 +8,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.easyjson.json.encoder.JSONEncoder;
 /**
  * 
  * @author Andrea Cosentino<ancosen@gmail.com>
  *
  */
-
 import junit.framework.TestCase;
 
 public class EncondingTest extends TestCase {
