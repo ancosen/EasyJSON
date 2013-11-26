@@ -1,5 +1,5 @@
 
-<src href="https://travis-ci.org/ancosen/EasyJSON.png?branch=master"></img>
+<img src="https://travis-ci.org/ancosen/EasyJSON.png?branch=master"></img>
 
 ## <a name='TOC'>Table of Contents</a>
 
