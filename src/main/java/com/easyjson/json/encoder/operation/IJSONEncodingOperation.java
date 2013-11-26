@@ -1,4 +1,4 @@
-package com.easyjson.json.operation;
+package com.easyjson.json.encoder.operation;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -9,7 +9,7 @@ import java.io.Writer;
  *
  */
 
-public interface IJSONOperation {
+public interface IJSONEncodingOperation {
 
 	void addJSONElement(Object key, Object value, Writer out)
 			throws IOException;

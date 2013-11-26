@@ -1,4 +1,4 @@
-package com.easyjson.json;
+package com.easyjson.json.encoder;
 
 import java.io.IOException;
 import java.io.Writer;

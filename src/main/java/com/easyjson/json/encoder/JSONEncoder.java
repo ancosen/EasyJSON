@@ -1,12 +1,13 @@
-package com.easyjson.json;
+package com.easyjson.json.encoder;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import com.easyjson.common.IJSONCostants;
-import com.easyjson.json.operation.IJSONOperation;
+import com.easyjson.json.encoder.operation.IJSONEncodingOperation;
 
 /**
  * 
@@ -14,7 +15,7 @@ import com.easyjson.json.operation.IJSONOperation;
  *
  */
 
-public class JSONEncoder extends HashMap implements IJSONOperation {
+public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 
 	private static final long serialVersionUID = 1L;
 
