@@ -1,10 +1,8 @@
-
-<img src="https://travis-ci.org/ancosen/EasyJSON.png?branch=master"></img>
-
 ## <a name='TOC'>Table of Contents</a>
 
   1. [EasyJSON](#EasyJSON)
   1. [Actual State](#State)
+  1. [Build State](#BuildState)
   1. [Testing](#Testing)
   1. [License](#License)
 
@@ -19,6 +17,10 @@ At the moment EasyJSON is only an encoder written in JAVA. The next steps of the
 - Develop a JSON Validator
 
 This is a really base version, there is so much work to do.
+
+## <a name='BuildState'>Build State</a>
+
+[![Build Status](https://travis-ci.org/ancosen/EasyJSON.png?branch=master)](https://travis-ci.org/ancosen/EasyJSON)
 
 ## <a name='Testing'>Testing</a>
 
