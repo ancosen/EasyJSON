@@ -1,3 +1,5 @@
+https://travis-ci.org/ancosen/EasyJSON.png?branch=master
+
 ## <a name='TOC'>Table of Contents</a>
 
   1. [EasyJSON](#EasyJSON)
