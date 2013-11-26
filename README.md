@@ -12,7 +12,7 @@ EasyJSON is a Java Encoder developed to build JSON Object in easy way.
 
 ## <a name='State'>Actual State</a>
 
-At the moment EasyJSON is only an encoder written in JAVA. The next steps of the project is:
+At the moment EasyJSON is only an encoder written in JAVA. The next step of the project is:
 
 - Develop a JSON Validator
 
