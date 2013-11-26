@@ -20,7 +20,7 @@ This is a really base version, there is so much work to do.
 
 ## <a name='BuildState'>Build State</a>
 
-[![Build Status](https://travis-ci.org/ancosen/EasyJSON.png?branch=master)](https://travis-ci.org/ancosen/EasyJSON)
+[![Build Status](https://travis-ci.org/ancosen/EasyJSON.png?branch=dev)](https://travis-ci.org/ancosen/EasyJSON)
 
 ## <a name='Testing'>Testing</a>
 
