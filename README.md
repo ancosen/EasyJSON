@@ -15,10 +15,10 @@ EasyJSON is a Java Encoder/Tokenizer developed to build and to manage JSON Objec
 
 At the moment EasyJSON is only an encoder written in JAVA. The steps of the project are:
 
-- [x] Develop a JSON Encoder
-- [x] Develop a JSON Tokenizer
-- [] Develop a JSON Decoder
-- [] Develop a JSON Validator
+- Develop a JSON Encoder (Done, need more features)
+- Develop a JSON Tokenizer (Done)
+- Develop a JSON Decoder
+- Develop a JSON Validator
 
 This is a really base version, there is so much work to do.
 
