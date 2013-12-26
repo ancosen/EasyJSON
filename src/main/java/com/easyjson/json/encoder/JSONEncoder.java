@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.easyjson.common.IJSONCostants;
 import com.easyjson.json.encoder.operation.IJSONEncodingOperation;
+import com.easyjson.json.encoder.operation.ParseValue;
 
 /**
  * 
@@ -61,19 +62,19 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 	}
 
 	public void openJSONObject(Writer out) throws IOException {
-		out.write(IJSONCostants.LEFT_SQUARE_BRACKET);
+		out.write(IJSONCostants.START_BRACE);
 	}
 
 	public void closeJSONObject(Writer out) throws IOException {
-		out.write(IJSONCostants.RIGHT_SQUARE_BRACKET);
+		out.write(IJSONCostants.END_BRACE);
 	}
 
 	public void openJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.LEFT_CURLY_BRACKET);
+		out.write(IJSONCostants.START_BRACKET);
 	}
 
 	public void closeJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.RIGHT_CURLY_BRACKET);
+		out.write(IJSONCostants.END_BRACKET);
 	}
 
 	public void commaJSONElement(Writer out) throws IOException {
@@ -85,6 +86,6 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 	}
 
 	public void quotationMarkJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.QUOTATION_MARK);
+		out.write(IJSONCostants.DOUBLE_QUOTE);
 	}
 }
