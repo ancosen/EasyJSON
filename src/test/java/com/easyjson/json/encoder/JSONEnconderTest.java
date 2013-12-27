@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,12 +19,12 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class EncondingTest{
+public class JSONEnconderTest{
 
 	@Test
 	public void testNull() throws IOException{
 		StringWriter out = new StringWriter();
-		Map map = null;
+		LinkedHashMap map = null;
 		JSONEncoder.toJSONString(map, out);
 		assertNotNull(out.toString());
 	}
@@ -31,7 +32,7 @@ public class EncondingTest{
 	@Test	
 	public void testEmpty() throws IOException{
 		StringWriter out = new StringWriter();
-		Map map = new HashMap();
+		LinkedHashMap map = new LinkedHashMap();
 		JSONEncoder.toJSONString(map, out);
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -41,8 +42,8 @@ public class EncondingTest{
 	@Test	
 	public void test1() throws IOException {
 		StringWriter out = new StringWriter();
-		Map map = new HashMap();
-		map.put("Id", 29);
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
 		map.put("type","MIME");
 		JSONEncoder.toJSONString(map, out);
 		assertNotNull(out.toString());
@@ -64,8 +65,8 @@ public class EncondingTest{
 		p1.add("Hello");
 		p1.add("Ciao");
 		p1.add("Salut");
-		Map map = new HashMap();
-		map.put("Id", 29);
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
 		map.put("List1", p);
 		map.put("List2", p1);
 		map.put("type","MIME");
@@ -84,10 +85,10 @@ public class EncondingTest{
 	@Test
 	public void test3() throws IOException{
 		StringWriter out = new StringWriter();
-		Map map = new HashMap();
-		Map map1 = new HashMap();
-		Map map2 = new HashMap();
-		Map map3 = new HashMap();
+		LinkedHashMap map = new LinkedHashMap();
+		LinkedHashMap map1 = new LinkedHashMap();
+		LinkedHashMap map2 = new LinkedHashMap();
+		LinkedHashMap map3 = new LinkedHashMap();
 		map3.put("Param1", "a.html");
 		map3.put("Param2", "b.html");
 		map3.put("HTML Page", "HTML");
@@ -95,7 +96,7 @@ public class EncondingTest{
 		map2.put("Param1", "a");
 		map2.put("Param2", "b");
 		map2.put("Servlet-Name", "ServletExe");
-		map1.put("Id", 29);
+		map1.put("Id", new Long(29));
 		map1.put("Servlet", map2);
 		map.put("Root",map1);
 		
@@ -113,10 +114,10 @@ public class EncondingTest{
 	@Test
 	public void test4() throws IOException {
 		StringWriter out = new StringWriter();
-		Map obj = new LinkedHashMap();
+		LinkedHashMap obj = new LinkedHashMap();
 		obj.put("name", "foo");
 		obj.put("num", new Integer(100));
-		obj.put("balance", new Double(1000.21));
+		obj.put("balance", new BigDecimal(1000.21));
 		obj.put("is_vip", new Boolean(true));
 		obj.put("nickname", null);
 		LinkedList list = new LinkedList();
@@ -126,8 +127,8 @@ public class EncondingTest{
 		list1.add("ccc");
 		list.add(list1);
 		list.add("foo");
-		list.add(new Integer(100));
-		list.add(new Double(1000.21));
+		list.add(new Long(29));
+		list.add(new BigDecimal(1000.21));
 		list.add(new Boolean(true));
 		list.add(null);
 		obj.put("testList", list);
@@ -146,7 +147,7 @@ public class EncondingTest{
 	@Test
 	public void test5() throws IOException {
 		StringWriter out = new StringWriter();
-		Map m1 = new LinkedHashMap();
+		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
 		List l3 = new LinkedList();
 		List l1 = new LinkedList();
@@ -176,7 +177,7 @@ public class EncondingTest{
 	@Test
 	public void test6() throws IOException {
 		StringWriter out = new StringWriter();
-		Map m1 = new LinkedHashMap();
+		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
 		List l3 = new LinkedList();
 		List l1 = new LinkedList();
@@ -213,7 +214,7 @@ public class EncondingTest{
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
 		for (int i = 0; i < 1000; i++) {
-			p.add(i);
+			p.add(new Long(i));
 		}
 
 		Collection c = new ArrayList();
@@ -224,11 +225,11 @@ public class EncondingTest{
 
 		Map obj1 = new HashMap();
 		obj1.put("name", "foo");
-		obj1.put("num", new Integer(100));
-		obj1.put("balance", new Double(1000.21));
+		obj1.put("num", new Long(100));
+		obj1.put("balance", new BigDecimal(1000.21));
 		obj1.put("list", p);
 
-		Map obj2 = new HashMap();
+		LinkedHashMap obj2 = new LinkedHashMap();
 		obj2.put("is_vip", new Boolean(true));
 		obj2.put("nickname", null);
 		obj2.put("anotherlist", c);

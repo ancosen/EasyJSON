@@ -1,7 +1,10 @@
 package com.easyjson.json.tokenizer;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -9,27 +12,31 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.easyjson.json.encoder.JSONEncoder;
 import com.easyjson.json.tokenizer.common.token.Token;
 import com.easyjson.json.tokenizer.common.token.TokenType;
 
-public class JSONTokenizerTest extends TestCase {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class JSONTokenizerTest{
 
+	@Test
 	public void test1() throws IOException {
 
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
 		p.add("Ciao");
-		p.add(22.12);
-		p.add(-26.19);
+		p.add(new BigDecimal(26.12));
+		p.add(new BigDecimal(-26.19));
 		List p1 = new ArrayList();
 		p1.add("Hello");
 		p1.add("Ciao");
 		p1.add("Salut");
-		Map map = new HashMap();
-		map.put("Id", 29);
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
 		map.put("List1", p);
 		map.put("List2", p1);
 		map.put("type", "MIME");
@@ -43,25 +50,26 @@ public class JSONTokenizerTest extends TestCase {
 			System.err.println(token.value());
 			tokens.add(token);
 		}
-
+		assertTrue(tokens.size() > 0);
 	}
-	
+
+	@Test
 	public void test2() throws IOException{
 		StringWriter out = new StringWriter();
 
 		List list1 = new ArrayList();
 		list1.add("foo");
-		list1.add(new Integer(100));
-		list1.add(new Double(1000.21));
+		list1.add(new Long(100));
+		list1.add(new BigDecimal(1000.21));
 
 		List list2 = new ArrayList();
 		list2.add(new Boolean(true));
 		list2.add(null);
 
-		Map obj = new HashMap();
+		LinkedHashMap obj = new LinkedHashMap();
 		obj.put("name", "foo");
-		obj.put("num", new Integer(100));
-		obj.put("balance", new Double(1000.21));
+		obj.put("num", new Long(100));
+		obj.put("balance", new BigDecimal(1000.21));
 		obj.put("is_vip", new Boolean(true));
 		obj.put("nickname", null);
 
@@ -81,11 +89,13 @@ public class JSONTokenizerTest extends TestCase {
 		}
 		
 		assertTrue(tokens.size() > 0);
+		assertEquals("balance", tokens.get(2).value());
 	}
-	
+
+	@Test
 	public void test3() throws IOException{
 		StringWriter out = new StringWriter();
-		Map m1 = new LinkedHashMap();
+		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
 		List l3 = new LinkedList();
 		List l1 = new LinkedList();

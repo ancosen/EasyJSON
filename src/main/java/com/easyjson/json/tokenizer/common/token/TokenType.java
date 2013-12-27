@@ -11,7 +11,8 @@ public enum TokenType
     BRACKET_CLOSE("]"),
     COMMA(","),
     STRING(String.class),
-    INTEGER(Long.class),
+    LONG(Long.class),
+    INTEGER(Integer.class),
     DECIMAL(BigDecimal.class),
     TRUE(Boolean.TRUE),
     FALSE(Boolean.FALSE),
@@ -72,7 +73,7 @@ public enum TokenType
             case TRUE:
             case FALSE:
             case NULL:
-            case INTEGER:
+            case LONG:
             case DECIMAL:
                 return true;
             default:

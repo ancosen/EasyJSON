@@ -262,7 +262,7 @@ public class JSONTokenizer
             try
             {
                 long l = Long.parseLong(number );
-                return Token.getToken(TokenType.INTEGER, l);
+                return Token.getToken(TokenType.LONG, l);
             }
             catch(NumberFormatException nfe)
             {
