@@ -6,9 +6,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.easyjson.common.IJSONCostants;
 import com.easyjson.json.encoder.operation.IJSONEncodingOperation;
 import com.easyjson.json.encoder.operation.ParseValue;
+import com.easyjson.json.tokenizer.JSONTokenizer;
 
 /**
  * 
@@ -19,25 +23,38 @@ import com.easyjson.json.encoder.operation.ParseValue;
 public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger log = LoggerFactory.getLogger(JSONEncoder.class);
 
 	public JSONEncoder() {
 		super();
 	}
 
-	public static void toJSONString(Map map, Writer out) throws IOException {
+	public static void toJSONString(Map map, Writer out) {		
+        log.info("Start Creating JSON String");
+        
 		if (map == null)
 			return;
 		JSONEncoder json = new JSONEncoder();
-		json.openJSONObject(out);
-		Iterator iterator = map.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry entry = (Map.Entry) iterator.next();
-			json.addJSONElement(entry.getKey(), entry.getValue(), out);
-			if (iterator.hasNext()) {
-				json.commaJSONElement(out);
+		
+		try {
+			json.openJSONObject(out);
+			
+			Iterator iterator = map.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry entry = (Map.Entry) iterator.next();
+				json.addJSONElement(entry.getKey(), entry.getValue(), out);
+				if (iterator.hasNext()) {
+					json.commaJSONElement(out);
+				}
 			}
+			json.closeJSONObject(out);
+			
+		} catch (IOException e) {
+	        log.error("IOException catched" + e);
 		}
-		json.closeJSONObject(out);
+		
+		log.info("JSON string is {}.", out.toString());
 	}
 
 	public void write(Object object, Object object2, Writer out)
