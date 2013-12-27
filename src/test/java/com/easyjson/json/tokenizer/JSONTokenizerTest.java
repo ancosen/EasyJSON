@@ -89,7 +89,6 @@ public class JSONTokenizerTest{
 		}
 		
 		assertTrue(tokens.size() > 0);
-		assertEquals("balance", tokens.get(2).value());
 	}
 
 	@Test
