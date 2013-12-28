@@ -50,7 +50,7 @@ public class JSONDecoderTest {
 		assertTrue(equalMaps(nuova, map));
 
 	}
-
+	
 	public boolean equalMaps(Map<?, ?> map1, Map<?, ?> map2) {
 
 		if (map1 == null || map2 == null || map1.size() != map2.size()) {
