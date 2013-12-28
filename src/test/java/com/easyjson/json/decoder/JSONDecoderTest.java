@@ -29,8 +29,9 @@ public class JSONDecoderTest {
 
 		LinkedHashMap map = new LinkedHashMap();
 		map.put("Id", new Long(29));
-		map.put("type", "MIME");
 		JSONEncoder.toJSONString(map, out);
+		System.err.println(out.toString());
+		System.err.println(map.size());
 
 		JSONTokenizer jsonTokenizer = new JSONTokenizer(out.toString(), true);
 
@@ -43,99 +44,10 @@ public class JSONDecoderTest {
 
 		LinkedHashMap nuova = new LinkedHashMap();
 		JSONDecoder.toMap(tokens, nuova);
+		
+		System.err.println(nuova.size());
 
 		assertTrue(equalMaps(nuova, map));
-
-	}
-
-	@Test
-	public void test2() throws IOException {
-		StringWriter out = new StringWriter();
-
-		List p = new ArrayList();
-		for (int i = 0; i < 2; i++) {
-			p.add(new Long(i));
-		}
-
-		Collection c = new ArrayList();
-		String p1 = "Example";
-		for (int f = 0; f < 3; f++) {
-			c.add(p1);
-		}
-
-		LinkedHashMap obj1 = new LinkedHashMap();
-		obj1.put("name", "foo");
-		obj1.put("num", new Long(100));
-		obj1.put("balance", new BigDecimal(1000.21));
-		obj1.put("list", p);
-
-		LinkedHashMap obj2 = new LinkedHashMap();
-		obj2.put("is_vip", new Boolean(true));
-		obj2.put("nickname", "peppone");
-		obj2.put("anotherlist", c);
-		obj2.putAll(obj1);
-
-		JSONEncoder.toJSONString(obj2, out);
-
-		JSONTokenizer jsonTokenizer = new JSONTokenizer(out.toString(), true);
-
-		List<Token> tokens = new ArrayList<Token>();
-		Token token;
-		while ((token = jsonTokenizer.next()).type() != TokenType.END) {
-			System.err.println(token.value());
-			tokens.add(token);
-		}
-
-		LinkedHashMap nuova = new LinkedHashMap();
-		JSONDecoder.toMap(tokens, nuova);
-
-		assertTrue(equalMaps(obj2, nuova));
-
-	}
-	
-	@Test
-	public void test3() throws IOException {
-		StringWriter out = new StringWriter();
-
-		List p = new ArrayList();
-		for (int i = 0; i < 2; i++) {
-			p.add(new Long(i));
-		}
-
-		Collection c = new ArrayList();
-		String p1 = "Example";
-		for (int f = 0; f < 3; f++) {
-			c.add(p1);
-		}
-
-		LinkedHashMap obj1 = new LinkedHashMap();
-		obj1.put("name", "foo");
-		obj1.put("num", new Long(100));
-		obj1.put("balance", new BigDecimal(1000.21));
-		obj1.put("balance3", new BigDecimal(1000.21));
-		obj1.put("list", p);
-
-		LinkedHashMap obj2 = new LinkedHashMap();
-		obj2.put("is_vip", new Boolean(true));
-		obj2.put("nickname", "peppone");
-		obj2.put("anotherlist", c);
-		obj2.putAll(obj1);
-
-		JSONEncoder.toJSONString(obj2, out);
-
-		JSONTokenizer jsonTokenizer = new JSONTokenizer(out.toString(), true);
-
-		List<Token> tokens = new ArrayList<Token>();
-		Token token;
-		while ((token = jsonTokenizer.next()).type() != TokenType.END) {
-			System.err.println(token.value());
-			tokens.add(token);
-		}
-
-		LinkedHashMap nuova = new LinkedHashMap();
-		JSONDecoder.toMap(tokens, nuova);
-
-		assertTrue(equalMaps(obj2, nuova));
 
 	}
 

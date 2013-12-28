@@ -32,12 +32,11 @@ public class ParseToken implements IParseToken{
 		for (int i = 0; i<_tokens.size(); i++){
 			Token token = (Token) _tokens.get(i);
 			switch (token.type()){
-			case BRACKET_OPEN:
+			case BRACE_OPEN:
 				ArrayList sublist = new ArrayList();
 				StringWriter key = new StringWriter();
 				position = build(sublist, key, i);
-				if (sublist.size() > 1) _map.put(key.toString(),sublist);
-				else _map.put(key.toString(),sublist.get(0));
+				_map.put(key.toString(),sublist.get(0));
 				i=position;
 				break;
 			default: 
@@ -51,10 +50,10 @@ public class ParseToken implements IParseToken{
 	public int build(List sublist, StringWriter key, int position) {
 		position = position + 1;
 		Token token = (Token) _tokens.get(position);
-		key.append((CharSequence) token.value());
+		key.append((String) token.value());
 		position++;
 		for (;position<_tokens.size();position++){
-			while (!TokenType.BRACKET_CLOSE.equals(token.type())){
+			while (!TokenType.BRACE_CLOSE.equals(token.type())){
 				token = (Token) _tokens.get(position);
 				switch (token.type()){
 					case LONG:
