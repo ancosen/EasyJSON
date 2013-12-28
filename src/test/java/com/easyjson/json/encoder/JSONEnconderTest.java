@@ -3,11 +3,11 @@ package com.easyjson.json.encoder;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -22,25 +22,27 @@ import org.junit.runners.MethodSorters;
 public class JSONEnconderTest{
 
 	@Test
-	public void testNull() throws IOException{
+	public void testNull(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = null;
 		JSONEncoder.toJSONString(map, out);
 		assertNotNull(out.toString());
+		System.err.println(out.toString());
 	}
 	
 	@Test	
-	public void testEmpty() throws IOException{
+	public void testEmpty(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = new LinkedHashMap();
 		JSONEncoder.toJSONString(map, out);
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().equals("{}"));
+		System.err.println(out.toString());
 	}
 	
 	@Test	
-	public void test1() throws IOException {
+	public void test1(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = new LinkedHashMap();
 		map.put("Id", new Long(29));
@@ -52,10 +54,11 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("29"));
 		assertTrue(out.toString().contains("type"));
 		assertTrue(out.toString().contains("MIME"));
+		System.err.println(out.toString());
 	}
 
 	@Test
-	public void test2() throws IOException {
+	public void test2(){
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
 		p.add("Start");
@@ -80,10 +83,11 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("Ciao"));
 		assertTrue(out.toString().contains("Salut"));
 		assertTrue(out.toString().contains("List1"));
+		System.err.println(out.toString());
 	}
 
 	@Test
-	public void test3() throws IOException{
+	public void test3(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = new LinkedHashMap();
 		LinkedHashMap map1 = new LinkedHashMap();
@@ -109,10 +113,11 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("Servlet-Name"));
 		assertTrue(out.toString().contains("Root"));
 		assertTrue(out.toString().contains("Servlet"));
+		System.err.println(out.toString());
 	}
 	
 	@Test
-	public void test4() throws IOException {
+	public void test4(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap obj = new LinkedHashMap();
 		obj.put("name", "foo");
@@ -122,9 +127,14 @@ public class JSONEnconderTest{
 		obj.put("nickname", null);
 		LinkedList list = new LinkedList();
 		LinkedList list1 = new LinkedList();
+		LinkedList list2 = new LinkedList();
+		list2.add(new Long(0));
+		list2.add(new Long(1));
+		list2.add(new Long(2));
 		list1.add("aaa");
 		list1.add("nnn");
 		list1.add("ccc");
+		list1.add(list2);
 		list.add(list1);
 		list.add("foo");
 		list.add(new Long(29));
@@ -142,10 +152,11 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("1000.21"));
 		assertTrue(out.toString().contains("100"));
 		assertTrue(out.toString().contains("testList"));
+		System.err.println(out.toString());
 	}
 
 	@Test
-	public void test5() throws IOException {
+	public void test5(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
@@ -172,10 +183,11 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("v23"));
 		assertTrue(out.toString().contains("root"));
 		assertTrue(out.toString().contains("root1"));
+		System.err.println(out.toString());
 	}
 
 	@Test
-	public void test6() throws IOException {
+	public void test6() {
 		StringWriter out = new StringWriter();
 		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
@@ -207,19 +219,20 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("root1"));
 		assertTrue(out.toString().contains("root2"));
 		assertTrue(out.toString().contains("root3"));
+		System.err.println(out.toString());
 	}
 
 	@Test
-	public void test7() throws IOException {
+	public void test7() {
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10; i++) {
 			p.add(new Long(i));
 		}
 
 		Collection c = new ArrayList();
 		String p1 = "Example";
-		for (int f = 0; f < 1000; f++) {
+		for (int f = 0; f < 5; f++) {
 			c.add(p1);
 		}
 
@@ -244,6 +257,47 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().contains("1000.21"));
 		assertTrue(out.toString().contains("nickname"));
 		assertTrue(out.toString().contains("anotherlist"));
+		System.err.println(out.toString());
+	}
+	
+	@Test
+	public void test8(){
+		StringWriter out = new StringWriter();
+		
+		List add = new ArrayList();
+		LinkedHashMap addresses = new LinkedHashMap();
+		addresses.put("description", "foo");
+		addresses.put("street", "123 kksk");
+		addresses.put("city", "Atlanta");
+		addresses.put("state", "USA");
+		addresses.put("postalcode", "ANANA");
+		add.add(addresses);
+		add.add(addresses);
+		add.add(addresses);
+		add.add(addresses);
+		add.add(addresses);
+		add.add(addresses);
+		add.add(addresses);
+		add.add(addresses);
+		
+		LinkedHashMap mapSpouse = new LinkedHashMap();
+		mapSpouse.put("name", "Peppe");
+		mapSpouse.put("Surname", "Pig");
+		mapSpouse.put("addresses", addresses);
+		
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("name", "Peppa");
+		map.put("surname", "Pig");
+		map.put("birthdate", new Date().toString());
+		map.put("spouse", mapSpouse);
+		map.put("addresses", add);
+		
+		JSONEncoder.toJSONString(map, out);
+		System.err.println(out.toString());
+
+		assertNotNull(out.toString());
+		assertTrue(out.toString().length() > 0);
+		
 	}
 
 }

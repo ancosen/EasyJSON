@@ -30,53 +30,14 @@ public class ParseValue {
 	
 	public void parseValue() throws IOException {
 		if (_obj instanceof String) {
-			manageString();
+			new ManageStringOperation(_obj, _out, _json).exec();
 		} 
 		else if (_obj instanceof List) {
-			manageList();
+			new ManageListOperation(_obj, _out, _json).exec();
 		} 
 		else if (_obj instanceof Map){
-			manageMap();
+			new ManageMapOperation(_obj, _out, _json).exec();
 		}
 		else _out.write(String.valueOf(_obj));
-	}
-	
-	public void manageString() throws IOException{
-		_json.quotationMarkJSONElement(_out);
-		_out.write(String.valueOf(_obj));
-		_json.quotationMarkJSONElement(_out);
-	}
-	
-	public void manageList() throws IOException{
-		_json.openJSONObject(_out);
-		Iterator iterator = ((List) _obj).iterator();
-		while (iterator.hasNext()) {
-			Object element = iterator.next();
-			if (element instanceof String) {
-				_json.quotationMarkJSONElement(_out);
-				_out.write(String.valueOf(element));
-				_json.quotationMarkJSONElement(_out);
-			} 
-			else {
-				_out.write(String.valueOf(element));
-			}
-			if (iterator.hasNext()) {
-				_json.commaJSONElement(_out);
-			}
-		}
-		_json.closeJSONObject(_out);
-	}
-	
-	public void manageMap() throws IOException{
-		Iterator iterator = ((HashMap) _obj).entrySet().iterator();
-		_json.openJSONElement(_out);
-		while (iterator.hasNext()) {
-			Map.Entry entry = (Map.Entry) iterator.next();
-			_json.addJSONMapElement(entry.getKey(), entry.getValue(), _out);
-			if (iterator.hasNext()) {
-				_json.commaJSONElement(_out);
-			}
-		}
-		_json.closeJSONElement(_out);
 	}
 }

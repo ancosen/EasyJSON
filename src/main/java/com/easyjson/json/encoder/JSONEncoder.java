@@ -68,9 +68,7 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 
 	public void addJSONElement(Object object, Object object2, Writer out)
 			throws IOException {
-		this.openJSONElement(out);
 		this.write(object, object2, out);
-		this.closeJSONElement(out);
 	}
 
 	public void addJSONMapElement(Object object, Object object2, Writer out)
