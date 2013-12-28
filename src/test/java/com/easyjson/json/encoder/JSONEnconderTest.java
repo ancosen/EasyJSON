@@ -293,11 +293,10 @@ public class JSONEnconderTest{
 		map.put("addresses", add);
 		
 		JSONEncoder.toJSONString(map, out);
-		System.err.println(out.toString());
 
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
-		
+		assertTrue(out.toString().contains("description"));
 	}
 
 }
