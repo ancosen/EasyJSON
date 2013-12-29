@@ -27,11 +27,11 @@ This is a really base version, there is so much work to do.
 
 ## <a name='Testing'>Testing</a>
 
-In the Junit testing some useful example are provided. Please if you notice bugs or errors, report as soon as possible. It's very fast.
+In the Junit testing some useful example are provided. Please if you notice bugs or errors, report as soon as possible.
 
 ## <a name='Thanks'>Thanks</a>
 
-Many thanks to @ralfstx for his JSON Tokenizer in his project https://github.com/ralfstx/minimal-json
+Many thanks to @ralfstx for his JSON Tokenizer in his project https://github.com/ralfstx/minimal-json. It's very fast.
 
 ## <a name='License'>License</a>
 
