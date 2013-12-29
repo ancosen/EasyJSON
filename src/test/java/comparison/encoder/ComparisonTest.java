@@ -39,8 +39,7 @@ public class ComparisonTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		Object[][] data = new Object[][] { { 50 }, { 100 }, { 200 }, { 500 },
-				{ 1000 }, { 2000 }, { 5000 }, { 10000 }, { 20000 }, { 30000 },
-				{ 40000 }, { 50000 }};
+				{ 1000 }, { 2000 }, { 5000 }, { 10000 }};
 		return Arrays.asList(data);
 	}
 
