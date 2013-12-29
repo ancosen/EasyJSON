@@ -27,7 +27,7 @@ This is a really base version, there is so much work to do.
 
 ## <a name='Testing'>Testing</a>
 
-In the Junit testing some useful example are provided. Please if you notice bugs or errors, report as soon as possible.
+In the Junit testing some useful example are provided. Please if you notice bugs or errors, report as soon as possible. It's very fast.
 
 ## <a name='Thanks'>Thanks</a>
 
