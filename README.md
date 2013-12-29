@@ -16,8 +16,7 @@ EasyJSON is a Java Encoder/Tokenizer developed to build and to manage JSON Objec
 At the moment EasyJSON is only an encoder written in JAVA. The steps of the project are:
 
 - Develop a JSON Encoder (Done, need more features)
-- Develop a JSON Tokenizer (Done)
-- Develop a JSON Decoder
+- Add/Develop a JSON Decoder (Done)
 - Develop a JSON Validator
 
 This is a really base version, there is so much work to do.
@@ -32,7 +31,7 @@ In the Junit testing some useful example are provided. Please if you notice bugs
 
 ## <a name='Thanks'>Thanks</a>
 
-Many thanks to @fforw for his JSON Tokenizer in his project https://github.com/fforw/svenson
+Many thanks to @ralfstx for his JSON Tokenizer in his project https://github.com/ralfstx/minimal-json
 
 ## <a name='License'>License</a>
 
