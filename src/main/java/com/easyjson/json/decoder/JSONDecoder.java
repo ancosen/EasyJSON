@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.easyjson.json.decoder.operation.IJSONDecodingOperation;
 import com.easyjson.json.decoder.parser.ParseToken;
+import com.easyjson.json.tokenizer.JSONTokenizer;
 
 public class JSONDecoder implements IJSONDecodingOperation{
 
@@ -19,14 +20,14 @@ public class JSONDecoder implements IJSONDecodingOperation{
 		super();
 	}
 
-	public static void toMap(List tokens, LinkedHashMap map) {		
+	public static void toMap(JSONTokenizer jsonTokenizer, LinkedHashMap map) {		
         log.info("Start Creating JSON Map");
         
-        if (tokens.size() == 0){
+        if (jsonTokenizer == null){
         	return;
         }
         
-        new ParseToken(tokens,map,log).parse();
+        new ParseToken(jsonTokenizer,map,log).parse();
 
 		return;
 	}

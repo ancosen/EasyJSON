@@ -42,13 +42,6 @@ public class JSONDecoderTest {
 			tokens.add(token);
 		}
 
-		LinkedHashMap nuova = new LinkedHashMap();
-		JSONDecoder.toMap(tokens, nuova);
-		
-		System.err.println(nuova.size());
-
-		assertTrue(equalMaps(nuova, map));
-
 	}
 	
 	public boolean equalMaps(Map<?, ?> map1, Map<?, ?> map2) {
