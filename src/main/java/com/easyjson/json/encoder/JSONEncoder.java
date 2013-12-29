@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import com.easyjson.common.IJSONCostants;
 import com.easyjson.json.encoder.operation.IJSONEncodingOperation;
 import com.easyjson.json.encoder.operation.ParseValue;
-import com.easyjson.json.tokenizer.JSONTokenizer;
 
 /**
  * 
