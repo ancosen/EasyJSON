@@ -20,15 +20,14 @@ public class JSONDecoder implements IJSONDecodingOperation{
 	}
 
 	public static void toMap(List tokens, LinkedHashMap map) {		
-        log.info("Start Creating JSON String");
+        log.info("Start Creating JSON Map");
         
         if (tokens.size() == 0){
         	return;
         }
         
         new ParseToken(tokens,map,log).parse();
-		
-		log.info("JSON map is {}.", map);
+
 		return;
 	}
 }

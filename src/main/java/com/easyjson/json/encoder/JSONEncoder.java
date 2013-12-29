@@ -53,8 +53,6 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 		} catch (IOException e) {
 	        log.error("IOException catched" + e);
 		}
-		
-		log.info("JSON string is {}.", out.toString());
 	}
 
 	public void write(Object object, Object object2, Writer out)
