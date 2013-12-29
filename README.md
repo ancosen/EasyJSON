@@ -4,6 +4,7 @@
   1. [Actual State](#State)
   1. [Build State](#BuildState)
   1. [Testing](#Testing)
+  1. [Thanks](#Thanks)
   1. [License](#License)
 
 ## <a name='EasyJSON'>EasyJSON</a>
@@ -15,18 +16,22 @@ EasyJSON is a Java Encoder/Tokenizer developed to build and to manage JSON Objec
 At the moment EasyJSON is only an encoder written in JAVA. The steps of the project are:
 
 - Develop a JSON Encoder (Done, need more features)
-- Develop a JSON Decoder
+- Add/Develop a JSON Decoder (Done)
 - Develop a JSON Validator
 
 This is a really base version, there is so much work to do.
 
 ## <a name='BuildState'>Build State</a>
 
-[![Build Status](https://travis-ci.org/ancosen/EasyJSON.png?branch=master)](https://travis-ci.org/ancosen/EasyJSON)
+[![Build Status](https://travis-ci.org/ancosen/EasyJSON.png?branch=dev)](https://travis-ci.org/ancosen/EasyJSON)
 
 ## <a name='Testing'>Testing</a>
 
 In the Junit testing some useful example are provided. Please if you notice bugs or errors, report as soon as possible.
+
+## <a name='Thanks'>Thanks</a>
+
+Many thanks to @ralfstx for his JSON Tokenizer in his project https://github.com/ralfstx/minimal-json
 
 ## <a name='License'>License</a>
 

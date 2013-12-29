@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 		super();
 	}
 
-	public static void toJSONString(Map map, Writer out) {		
+	public static void toJSONString(LinkedHashMap map, Writer out) {		
         log.info("Start Creating JSON String");
         
 		if (map == null)
@@ -52,8 +53,6 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 		} catch (IOException e) {
 	        log.error("IOException catched" + e);
 		}
-		
-		log.info("JSON string is {}.", out.toString());
 	}
 
 	public void write(Object object, Object object2, Writer out)
@@ -67,9 +66,7 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
 
 	public void addJSONElement(Object object, Object object2, Writer out)
 			throws IOException {
-		this.openJSONElement(out);
 		this.write(object, object2, out);
-		this.closeJSONElement(out);
 	}
 
 	public void addJSONMapElement(Object object, Object object2, Writer out)
