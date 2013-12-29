@@ -31,7 +31,7 @@ In the Junit testing some useful example are provided. Please if you notice bugs
 
 ## <a name='Thanks'>Thanks</a>
 
-Many thanks to @ralfstx for his JSON Tokenizer in his project https://github.com/ralfstx/minimal-json
+Many thanks to @ralfstx for his JSON Tokenizer in his project https://github.com/ralfstx/minimal-json. It's very fast.
 
 ## <a name='License'>License</a>
 
