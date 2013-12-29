@@ -40,7 +40,7 @@ public class ComparisonTest {
 	public static Collection<Object[]> data() {
 		Object[][] data = new Object[][] { { 50 }, { 100 }, { 200 }, { 500 },
 				{ 1000 }, { 2000 }, { 5000 }, { 10000 }, { 20000 }, { 30000 },
-				{ 40000 }, { 50000 }, { 70000 }, { 80000 } };
+				{ 40000 }, { 50000 },};
 		return Arrays.asList(data);
 	}
 
