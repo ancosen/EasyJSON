@@ -9,14 +9,14 @@
 
 ## <a name='EasyJSON'>EasyJSON</a>
 
-EasyJSON is a Java Encoder/Tokenizer developed to build and to manage JSON Object in easy way.
+EasyJSON is a Java Serializer/Deserializer developed to build and to manage JSON Object in easy way.
 
 ## <a name='State'>Actual State</a>
 
 At the moment EasyJSON is only an encoder written in JAVA. The steps of the project are:
 
-- Develop a JSON Encoder (Done, need more features)
-- Add/Develop a JSON Decoder (Done)
+- Develop a JSON Serializer (Done, need more features)
+- Add/Develop a JSON Deserializer (Done)
 - Develop a JSON Validator
 
 This is a really base version, there is so much work to do.
