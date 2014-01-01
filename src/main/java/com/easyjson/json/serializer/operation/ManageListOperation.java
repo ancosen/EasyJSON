@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.easyjson.json.serializer.JSONSerializer;
 
 public class ManageListOperation implements IManagerOperation{
@@ -13,7 +16,8 @@ public class ManageListOperation implements IManagerOperation{
 	private Object _obj;
 	private Writer _out;
 	private JSONSerializer _json;
-		
+	private static Logger log = LoggerFactory.getLogger(ManageListOperation.class);
+	
 	public ManageListOperation(Object obj, Writer out, JSONSerializer json) {
 		super();
 		_obj = obj;
@@ -21,14 +25,19 @@ public class ManageListOperation implements IManagerOperation{
 		_json = json;
 	}
 	
-	public void exec() throws IOException{
+	public void exec() {
 		_json.openJSONElement(_out);
 		Iterator iterator = ((List) _obj).iterator();
 		while (iterator.hasNext()) {
 			Object element = iterator.next();
 			if (element instanceof String) {
 				_json.quotationMarkJSONElement(_out);
-				_out.write(String.valueOf(element));
+				try {
+					_out.write(String.valueOf(element));
+				} catch (IOException e) {
+					log.error("Method: exec -" + e);
+					return;
+				}
 				_json.quotationMarkJSONElement(_out);
 			} 
 			else if (element instanceof Map) {
@@ -38,7 +47,12 @@ public class ManageListOperation implements IManagerOperation{
 				new ManageListOperation((List) element, _out, _json).exec();
 			} 
 			else {
-				_out.write(String.valueOf(element));
+				try {
+					_out.write(String.valueOf(element));
+				} catch (IOException e) {
+					log.error("Method: exec -" + e);
+					return;
+				}
 			}
 			if (iterator.hasNext()) {
 				_json.commaJSONElement(_out);

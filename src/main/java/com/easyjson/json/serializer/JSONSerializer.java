@@ -17,88 +17,123 @@ import com.easyjson.json.serializer.operation.ParseValue;
 /**
  * 
  * @author Andrea Cosentino<ancosen@gmail.com>
- *
+ * 
  */
 
 public class JSONSerializer extends HashMap implements IJSONEncodingOperation {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private static Logger log = LoggerFactory.getLogger(JSONSerializer.class);
 
 	public JSONSerializer() {
 		super();
 	}
 
-	public static void toJSONString(LinkedHashMap map, Writer out) {		
-        log.info("Start Creating JSON String");
-        
+	public static void toJSONString(LinkedHashMap map, Writer out) {
+		log.info("Start Creating JSON String");
+
 		if (map == null)
 			return;
 		JSONSerializer json = new JSONSerializer();
-		
-		try {
-			json.openJSONObject(out);
-			
-			Iterator iterator = map.entrySet().iterator();
-			while (iterator.hasNext()) {
-				Map.Entry entry = (Map.Entry) iterator.next();
-				json.addJSONElement(entry.getKey(), entry.getValue(), out);
-				if (iterator.hasNext()) {
-					json.commaJSONElement(out);
-				}
+
+		json.openJSONObject(out);
+
+		Iterator iterator = map.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry entry = (Map.Entry) iterator.next();
+			json.addJSONElement(entry.getKey(), entry.getValue(), out);
+			if (iterator.hasNext()) {
+				json.commaJSONElement(out);
 			}
-			json.closeJSONObject(out);
-			
+		}
+		json.closeJSONObject(out);
+
+		log.info("End Creating JSON String");
+	}
+
+	public void write(Object object, Object object2, Writer out) {
+		try {
+			this.quotationMarkJSONElement(out);
+			out.write(String.valueOf(object));
+			this.quotationMarkJSONElement(out);
+			this.colonJSONElement(out);
+			new ParseValue(object2, out, this).parseValue();
 		} catch (IOException e) {
-	        log.error("IOException catched" + e);
+			log.error("Method: write -" + e);
+			return;
 		}
 	}
 
-	public void write(Object object, Object object2, Writer out)
-			throws IOException {
-		this.quotationMarkJSONElement(out);
-		out.write(String.valueOf(object));
-		this.quotationMarkJSONElement(out);
-		this.colonJSONElement(out);
-		new ParseValue(object2, out, this).parseValue();
-	}
-
-	public void addJSONElement(Object object, Object object2, Writer out)
-			throws IOException {
+	public void addJSONElement(Object object, Object object2, Writer out) {
 		this.write(object, object2, out);
 	}
 
-	public void addJSONMapElement(Object object, Object object2, Writer out)
-			throws IOException {
+	public void addJSONMapElement(Object object, Object object2, Writer out) {
 		this.write(object, object2, out);
 	}
 
-	public void openJSONObject(Writer out) throws IOException {
-		out.write(IJSONCostants.START_BRACE);
+	public void openJSONObject(Writer out) {
+		try {
+			out.write(IJSONCostants.START_BRACE);
+		} catch (IOException e) {
+			log.error("Method: openJSONObject -" + e);
+			return;
+		}
 	}
 
-	public void closeJSONObject(Writer out) throws IOException {
-		out.write(IJSONCostants.END_BRACE);
+	public void closeJSONObject(Writer out) {
+		try {
+			out.write(IJSONCostants.END_BRACE);
+		} catch (IOException e) {
+			log.error("Method: closeJSONObject -" + e);
+			return;
+		}
 	}
 
-	public void openJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.START_BRACKET);
+	public void openJSONElement(Writer out) {
+		try {
+			out.write(IJSONCostants.START_BRACKET);
+		} catch (IOException e) {
+			log.error("Method: openJSONElement -" + e);
+			return;
+		}
 	}
 
-	public void closeJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.END_BRACKET);
+	public void closeJSONElement(Writer out) {
+		try {
+			out.write(IJSONCostants.END_BRACKET);
+		} catch (IOException e) {
+			log.error("Method: closeJSONElement -" + e);
+			return;
+		}
+
 	}
 
-	public void commaJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.COMMA);
+	public void commaJSONElement(Writer out) {
+		try {
+			out.write(IJSONCostants.COMMA);
+		} catch (IOException e) {
+			log.error("Method: commaJSONElement -" + e);
+			return;
+		}
 	}
 
-	public void colonJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.COLON);
+	public void colonJSONElement(Writer out) {
+		try {
+			out.write(IJSONCostants.COLON);
+		} catch (IOException e) {
+			log.error("Method: colonJSONElement -" + e);
+			return;
+		}
 	}
 
-	public void quotationMarkJSONElement(Writer out) throws IOException {
-		out.write(IJSONCostants.DOUBLE_QUOTE);
+	public void quotationMarkJSONElement(Writer out) {
+		try {
+			out.write(IJSONCostants.DOUBLE_QUOTE);
+		} catch (IOException e) {
+			log.error("Method: quotationMarkJSONElement -" + e);
+			return;
+		}
 	}
 }

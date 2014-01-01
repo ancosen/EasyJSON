@@ -1,9 +1,11 @@
-package com.easyjson.json.encoder;
+package com.easyjson.json.serializer;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -26,7 +28,7 @@ import org.junit.runners.MethodSorters;
 import com.easyjson.json.serializer.JSONSerializer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class JSONEnconderTest{
+public class JSONSerializerTest{
 
 	@Test
 	public void testNull(){
@@ -883,6 +885,18 @@ public class JSONEnconderTest{
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().contains("description"));
 		assertEquals(out.toString(),json);
+	}
+	
+	@Test	
+	public void testFile() throws IOException{
+		FileWriter out = new FileWriter(new File("./target/element.json"));
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
+		map.put("type","MIME");
+		JSONSerializer.toJSONString(map, out);
+		assertNotNull(out.toString());
+		assertTrue(out.toString().length() > 0);
+		out.close();
 	}
 
 }

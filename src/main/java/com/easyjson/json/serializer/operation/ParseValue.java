@@ -5,6 +5,9 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.easyjson.json.serializer.JSONSerializer;
 
 /**
@@ -18,6 +21,7 @@ public class ParseValue {
 	private Object _obj;
 	private Writer _out;
 	private JSONSerializer _json;
+	private static Logger log = LoggerFactory.getLogger(ParseValue.class);
 	
 	public ParseValue(Object obj, Writer out, JSONSerializer json) {
 		super();
@@ -26,7 +30,7 @@ public class ParseValue {
 		_json = json;
 	}
 	
-	public void parseValue() throws IOException {
+	public void parseValue(){
 		if (_obj instanceof String) {
 			new ManageStringOperation(_obj, _out, _json).exec();
 		} 
@@ -35,7 +39,12 @@ public class ParseValue {
 		} 
 		else if (_obj instanceof Map){
 			new ManageMapOperation(_obj, _out, _json).exec();
-		}
-		else _out.write(String.valueOf(_obj));
+		} else
+			try {
+				_out.write(String.valueOf(_obj));
+			} catch (IOException e) {
+				log.error("Method: parseValue -" + e);
+				return;
+			}
 	}
 }

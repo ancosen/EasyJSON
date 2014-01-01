@@ -1,4 +1,4 @@
-package com.easyjson.json.decoder;
+package com.easyjson.json.deserializer;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -20,7 +20,7 @@ import com.easyjson.json.deserializer.JSONDeserializer;
 import com.easyjson.json.serializer.JSONSerializer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class JSONDecoderTest {
+public class JSONDeserializerTest {
 
 	@Test
 	public void test1() throws IOException, ParseException {

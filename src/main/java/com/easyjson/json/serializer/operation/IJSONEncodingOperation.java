@@ -1,6 +1,5 @@
 package com.easyjson.json.serializer.operation;
 
-import java.io.IOException;
 import java.io.Writer;
 
 /**
@@ -11,6 +10,5 @@ import java.io.Writer;
 
 public interface IJSONEncodingOperation {
 
-	void addJSONElement(Object key, Object value, Writer out)
-			throws IOException;
+	void addJSONElement(Object key, Object value, Writer out);
 }

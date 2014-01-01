@@ -1,6 +1,5 @@
 package com.easyjson.json.serializer.operation;
 
-import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,7 +19,7 @@ public class ManageMapOperation implements IManagerOperation{
 		_json = json;
 	}
 	
-	public void exec() throws IOException{
+	public void exec(){
 		Iterator iterator = ((HashMap) _obj).entrySet().iterator();
 		_json.openJSONObject(_out);
 		while (iterator.hasNext()) {
