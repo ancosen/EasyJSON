@@ -21,6 +21,7 @@
         <connection>scm:git:git@github.com:ancosen/EasyJSON.git</connection>
         <developerConnection>scm:git:git@github.com:ancosen/EasyJSON.git</developerConnection>
         <url>http://github.com/ancosen/EasyJSON</url>
+        <tag>HEAD</tag>
     </scm>
 
 
