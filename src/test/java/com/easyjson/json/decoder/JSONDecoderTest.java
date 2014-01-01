@@ -16,7 +16,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.easyjson.json.encoder.JSONEncoder;
+import com.easyjson.json.deserializer.JSONDeserializer;
+import com.easyjson.json.serializer.JSONSerializer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONDecoderTest {
@@ -34,9 +35,9 @@ public class JSONDecoderTest {
 		}
 		map.put("list", list);
 
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 
-		Object jsonParser = new JsonDecoder(out.toString()).parse();
+		Object jsonParser = new JSONDeserializer(out.toString()).parse();
 
 		assertTrue(equalMaps(map, (Map) jsonParser));
 
@@ -99,9 +100,9 @@ public class JSONDecoderTest {
 		map.put("addresses14", add);
 		map.put("addresses15", add);
 		
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 
-		Object jsonParser = new JsonDecoder(out.toString()).parse();
+		Object jsonParser = new JSONDeserializer(out.toString()).parse();
 
 		assertTrue(equalMaps(map, (Map) jsonParser));
 
@@ -125,10 +126,10 @@ public class JSONDecoderTest {
 		map1.put("Servlet", map2);
 		map.put("Root",map1);
 		
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
 		
-		Object jsonParser = new JsonDecoder(out.toString()).parse();
+		Object jsonParser = new JSONDeserializer(out.toString()).parse();
 
 		assertTrue(equalMaps(map, (Map) jsonParser));
 

@@ -1,4 +1,4 @@
-package com.easyjson.json.encoder;
+package com.easyjson.json.serializer;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -11,8 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.easyjson.common.IJSONCostants;
-import com.easyjson.json.encoder.operation.IJSONEncodingOperation;
-import com.easyjson.json.encoder.operation.ParseValue;
+import com.easyjson.json.serializer.operation.IJSONEncodingOperation;
+import com.easyjson.json.serializer.operation.ParseValue;
 
 /**
  * 
@@ -20,13 +20,13 @@ import com.easyjson.json.encoder.operation.ParseValue;
  *
  */
 
-public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
+public class JSONSerializer extends HashMap implements IJSONEncodingOperation {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static Logger log = LoggerFactory.getLogger(JSONEncoder.class);
+	private static Logger log = LoggerFactory.getLogger(JSONSerializer.class);
 
-	public JSONEncoder() {
+	public JSONSerializer() {
 		super();
 	}
 
@@ -35,7 +35,7 @@ public class JSONEncoder extends HashMap implements IJSONEncodingOperation {
         
 		if (map == null)
 			return;
-		JSONEncoder json = new JSONEncoder();
+		JSONSerializer json = new JSONSerializer();
 		
 		try {
 			json.openJSONObject(out);

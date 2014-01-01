@@ -1,16 +1,16 @@
-package com.easyjson.json.encoder.operation;
+package com.easyjson.json.serializer.operation;
 
 import java.io.IOException;
 import java.io.Writer;
 
-import com.easyjson.json.encoder.JSONEncoder;
+import com.easyjson.json.serializer.JSONSerializer;
 
 public class ManageStringOperation implements IManagerOperation{
 	private Object _obj;
 	private Writer _out;
-	private JSONEncoder _json;
+	private JSONSerializer _json;
 		
-	public ManageStringOperation(Object obj, Writer out, JSONEncoder json) {
+	public ManageStringOperation(Object obj, Writer out, JSONSerializer json) {
 		super();
 		_obj = obj;
 		_out = out;

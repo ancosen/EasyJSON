@@ -9,7 +9,7 @@
 * Ralf Sternberg - initial implementation and API
 ******************************************************************************/
 
-package com.easyjson.json.decoder;
+package com.easyjson.json.deserializer;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.easyjson.json.decoder.operation.IJSONDecodingOperation;
+import com.easyjson.json.deserializer.operation.IJSONDecodingOperation;
 
 /*
 * | bufferOffset
@@ -31,7 +31,7 @@ import com.easyjson.json.decoder.operation.IJSONDecodingOperation;
 * | index fill
 */
 
-public class JsonDecoder implements IJSONDecodingOperation{
+public class JSONDeserializer implements IJSONDecodingOperation{
 
 	private static final int MIN_BUFFER_SIZE = 10;
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
@@ -47,16 +47,16 @@ public class JsonDecoder implements IJSONDecodingOperation{
 	private StringBuilder captureBuffer;
 	private int captureStart;
 
-	JsonDecoder(String string) {
+	public JSONDeserializer(String string) {
 		this(new StringReader(string), Math.max(MIN_BUFFER_SIZE,
 				Math.min(DEFAULT_BUFFER_SIZE, string.length())));
 	}
 
-	JsonDecoder(Reader reader) {
+	public JSONDeserializer(Reader reader) {
 		this(reader, DEFAULT_BUFFER_SIZE);
 	}
 
-	JsonDecoder(Reader reader, int buffersize) {
+	public JSONDeserializer(Reader reader, int buffersize) {
 		this.reader = reader;
 		buffer = new char[buffersize];
 		line = 1;

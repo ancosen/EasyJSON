@@ -23,7 +23,7 @@ import org.junit.runners.MethodSorters;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.easyjson.json.encoder.JSONEncoder;
+import com.easyjson.json.serializer.JSONSerializer;
 import com.google.gson.Gson;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -116,7 +116,7 @@ public class ComparisonTest {
 		String jsonEasyjson = "";
 
 		long start = System.nanoTime();
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		jsonEasyjson = out.toString();
 		long end = System.nanoTime();
 		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000
@@ -222,7 +222,7 @@ public class ComparisonTest {
 		String jsonEasyjson = "";
 
 		long start = System.nanoTime();
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		long end = System.nanoTime();
 		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000
 				+ " MicroSeconds");

@@ -1,4 +1,4 @@
-package com.easyjson.json.encoder.operation;
+package com.easyjson.json.serializer.operation;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.easyjson.json.encoder.JSONEncoder;
+import com.easyjson.json.serializer.JSONSerializer;
 
 public class ManageMapOperation implements IManagerOperation{
 	private Object _obj;
 	private Writer _out;
-	private JSONEncoder _json;
+	private JSONSerializer _json;
 		
-	public ManageMapOperation(Object obj, Writer out, JSONEncoder json) {
+	public ManageMapOperation(Object obj, Writer out, JSONSerializer json) {
 		super();
 		_obj = obj;
 		_out = out;

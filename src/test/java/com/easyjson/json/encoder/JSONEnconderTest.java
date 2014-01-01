@@ -23,6 +23,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.easyjson.json.serializer.JSONSerializer;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONEnconderTest{
 
@@ -30,7 +32,7 @@ public class JSONEnconderTest{
 	public void testNull(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = null;
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
 		System.err.println(out.toString());
 	}
@@ -39,7 +41,7 @@ public class JSONEnconderTest{
 	public void testEmpty(){
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = new LinkedHashMap();
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().equals("{}"));
@@ -52,7 +54,7 @@ public class JSONEnconderTest{
 		LinkedHashMap map = new LinkedHashMap();
 		map.put("Id", new Long(29));
 		map.put("type","MIME");
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().contains("Id"));
@@ -78,7 +80,7 @@ public class JSONEnconderTest{
 		map.put("List1", p);
 		map.put("List2", p1);
 		map.put("type","MIME");
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().contains("Start"));
@@ -109,7 +111,7 @@ public class JSONEnconderTest{
 		map1.put("Servlet", map2);
 		map.put("Root",map1);
 		
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().contains("Param1"));
@@ -147,7 +149,7 @@ public class JSONEnconderTest{
 		list.add(new Boolean(true));
 		list.add(null);
 		obj.put("testList", list);
-		JSONEncoder.toJSONString(obj, out);
+		JSONSerializer.toJSONString(obj, out);
 		
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -176,7 +178,7 @@ public class JSONEnconderTest{
 		l3.add("v23");
 		m1.put("root", l2);
 		m1.put("root1", l3);
-		JSONEncoder.toJSONString(m1, out);
+		JSONSerializer.toJSONString(m1, out);
 
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -211,7 +213,7 @@ public class JSONEnconderTest{
 		m1.put("root1", l1);
 		m1.put("root2", l2);
 		m1.put("root3", l3);
-		JSONEncoder.toJSONString(m1, out);
+		JSONSerializer.toJSONString(m1, out);
 		
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -253,7 +255,7 @@ public class JSONEnconderTest{
 		obj2.put("anotherlist", c);
 		obj2.putAll(obj1);
 
-		JSONEncoder.toJSONString(obj2, out);
+		JSONSerializer.toJSONString(obj2, out);
 
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -873,7 +875,7 @@ public class JSONEnconderTest{
 		System.out.println("DEBUG: Jackson mapper toke " + (endJackson - startJackson) + " MilliSeconds");
 		
 		long start = System.currentTimeMillis();
-		JSONEncoder.toJSONString(map, out);
+		JSONSerializer.toJSONString(map, out);
 		long end = System.currentTimeMillis();
 		System.out.println("DEBUG: JSON Encoder EasyJSON toke " + (end - start) + " MilliSeconds");
 
