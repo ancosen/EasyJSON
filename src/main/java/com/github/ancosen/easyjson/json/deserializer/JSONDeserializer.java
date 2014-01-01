@@ -9,7 +9,7 @@
 * Ralf Sternberg - initial implementation and API
 ******************************************************************************/
 
-package com.easyjson.json.deserializer;
+package com.github.ancosen.easyjson.json.deserializer;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.easyjson.json.deserializer.operation.IJSONDecodingOperation;
+import com.github.ancosen.easyjson.json.deserializer.operation.IJSONDecodingOperation;
 
 /*
 * | bufferOffset

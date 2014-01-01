@@ -1,11 +1,11 @@
-package com.easyjson.json.serializer.operation;
+package com.github.ancosen.easyjson.json.serializer.operation;
 
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.easyjson.json.serializer.JSONSerializer;
+import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
 
 public class ManageMapOperation implements IManagerOperation{
 	private Object _obj;

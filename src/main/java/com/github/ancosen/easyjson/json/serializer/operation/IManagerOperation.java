@@ -1,4 +1,4 @@
-package com.easyjson.json.serializer.operation;
+package com.github.ancosen.easyjson.json.serializer.operation;
 
 
 public interface IManagerOperation {

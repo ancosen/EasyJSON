@@ -1,4 +1,4 @@
-package com.easyjson.json.serializer;
+package com.github.ancosen.easyjson.json.serializer;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -10,9 +10,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.easyjson.common.IJSONCostants;
-import com.easyjson.json.serializer.operation.IJSONEncodingOperation;
-import com.easyjson.json.serializer.operation.ParseValue;
+import com.github.ancosen.easyjson.common.IJSONCostants;
+import com.github.ancosen.easyjson.json.serializer.operation.IJSONEncodingOperation;
+import com.github.ancosen.easyjson.json.serializer.operation.ParseValue;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.easyjson.json.deserializer.operation;
+package com.github.ancosen.easyjson.json.deserializer.operation;
 
 import java.io.IOException;
 import java.text.ParseException;

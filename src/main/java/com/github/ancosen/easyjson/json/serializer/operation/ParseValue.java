@@ -1,4 +1,4 @@
-package com.easyjson.json.serializer.operation;
+package com.github.ancosen.easyjson.json.serializer.operation;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -8,7 +8,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.easyjson.json.serializer.JSONSerializer;
+import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
 
 /**
  * 
