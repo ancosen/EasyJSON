@@ -31,7 +31,7 @@ public class JSONSerializer extends HashMap implements IJSONEncodingOperation {
 	}
 
 	public static void toJSONString(LinkedHashMap map, Writer out) {
-		log.info("Start Creating JSON String");
+		log.info("Start Serializing JSON Object");
 
 		if (map == null)
 			return;
@@ -48,8 +48,16 @@ public class JSONSerializer extends HashMap implements IJSONEncodingOperation {
 			}
 		}
 		json.closeJSONObject(out);
+		
+		try {
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			log.error("Method: toJSONString -" + e);
+			return;
+		}
 
-		log.info("End Creating JSON String");
+		log.info("End  Serializing JSON Object");
 	}
 
 	public void write(Object object, Object object2, Writer out) {

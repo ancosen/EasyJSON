@@ -1,12 +1,13 @@
 package com.easyjson.json.serializer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,14 +19,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import com.easyjson.json.serializer.JSONSerializer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONSerializerTest{
@@ -36,7 +35,6 @@ public class JSONSerializerTest{
 		LinkedHashMap map = null;
 		JSONSerializer.toJSONString(map, out);
 		assertNotNull(out.toString());
-		System.err.println(out.toString());
 	}
 	
 	@Test	
@@ -47,27 +45,29 @@ public class JSONSerializerTest{
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().equals("{}"));
-		System.err.println(out.toString());
 	}
 	
 	@Test	
-	public void test1(){
+	public void test1() throws IOException{
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = new LinkedHashMap();
 		map.put("Id", new Long(29));
 		map.put("type","MIME");
 		JSONSerializer.toJSONString(map, out);
-		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().contains("Id"));
 		assertTrue(out.toString().contains("29"));
 		assertTrue(out.toString().contains("type"));
 		assertTrue(out.toString().contains("MIME"));
-		System.err.println(out.toString());
+		
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile1.json"),"UTF-8");
+		JSONSerializer.toJSONString(map, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile1.json"), "utf-8"), out.toString());
 	}
 
 	@Test
-	public void test2(){
+	public void test2() throws IOException{
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
 		p.add("Start");
@@ -92,11 +92,15 @@ public class JSONSerializerTest{
 		assertTrue(out.toString().contains("Ciao"));
 		assertTrue(out.toString().contains("Salut"));
 		assertTrue(out.toString().contains("List1"));
-		System.err.println(out.toString());
+		
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile2.json"),"UTF-8");
+		JSONSerializer.toJSONString(map, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile2.json"), "utf-8"), out.toString());
 	}
 
 	@Test
-	public void test3(){
+	public void test3() throws IOException{
 		StringWriter out = new StringWriter();
 		LinkedHashMap map = new LinkedHashMap();
 		LinkedHashMap map1 = new LinkedHashMap();
@@ -122,11 +126,15 @@ public class JSONSerializerTest{
 		assertTrue(out.toString().contains("Servlet-Name"));
 		assertTrue(out.toString().contains("Root"));
 		assertTrue(out.toString().contains("Servlet"));
-		System.err.println(out.toString());
+
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile3.json"),"UTF-8");
+		JSONSerializer.toJSONString(map, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile3.json"), "utf-8"), out.toString());
 	}
 	
 	@Test
-	public void test4(){
+	public void test4() throws IOException{
 		StringWriter out = new StringWriter();
 		LinkedHashMap obj = new LinkedHashMap();
 		obj.put("name", "foo");
@@ -161,11 +169,15 @@ public class JSONSerializerTest{
 		assertTrue(out.toString().contains("1000.21"));
 		assertTrue(out.toString().contains("100"));
 		assertTrue(out.toString().contains("testList"));
-		System.err.println(out.toString());
+
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile4.json"),"UTF-8");
+		JSONSerializer.toJSONString(obj, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile4.json"), "utf-8"), out.toString());
 	}
 
 	@Test
-	public void test5(){
+	public void test5() throws IOException{
 		StringWriter out = new StringWriter();
 		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
@@ -192,11 +204,15 @@ public class JSONSerializerTest{
 		assertTrue(out.toString().contains("v23"));
 		assertTrue(out.toString().contains("root"));
 		assertTrue(out.toString().contains("root1"));
-		System.err.println(out.toString());
+		
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile5.json"),"UTF-8");
+		JSONSerializer.toJSONString(m1, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile5.json"), "utf-8"), out.toString());
 	}
 
 	@Test
-	public void test6() {
+	public void test6() throws IOException {
 		StringWriter out = new StringWriter();
 		LinkedHashMap m1 = new LinkedHashMap();
 		List l2 = new LinkedList();
@@ -228,11 +244,15 @@ public class JSONSerializerTest{
 		assertTrue(out.toString().contains("root1"));
 		assertTrue(out.toString().contains("root2"));
 		assertTrue(out.toString().contains("root3"));
-		System.err.println(out.toString());
+
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile6.json"),"UTF-8");
+		JSONSerializer.toJSONString(m1, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile6.json"), "utf-8"), out.toString());
 	}
 
 	@Test
-	public void test7() {
+	public void test7() throws IOException {
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
 		for (int i = 0; i < 10; i++) {
@@ -266,7 +286,11 @@ public class JSONSerializerTest{
 		assertTrue(out.toString().contains("1000.21"));
 		assertTrue(out.toString().contains("nickname"));
 		assertTrue(out.toString().contains("anotherlist"));
-		System.err.println(out.toString());
+
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile7.json"),"UTF-8");
+		JSONSerializer.toJSONString(obj2, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile7.json"), "utf-8"), out.toString());
 	}
 	
 	@Test
@@ -867,36 +891,17 @@ public class JSONSerializerTest{
 		map.put("addresses13", add);
 		map.put("addresses14", add);
 		map.put("addresses15", add);
-
-		ObjectMapper mapper = new ObjectMapper();
-		String json = "";
-		
-		long startJackson = System.currentTimeMillis();
-		json = mapper.writeValueAsString(map);
-		long endJackson = System.currentTimeMillis();
-		System.out.println("DEBUG: Jackson mapper toke " + (endJackson - startJackson) + " MilliSeconds");
-		
-		long start = System.currentTimeMillis();
+	
 		JSONSerializer.toJSONString(map, out);
-		long end = System.currentTimeMillis();
-		System.out.println("DEBUG: JSON Encoder EasyJSON toke " + (end - start) + " MilliSeconds");
 
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
 		assertTrue(out.toString().contains("description"));
-		assertEquals(out.toString(),json);
-	}
-	
-	@Test	
-	public void testFile() throws IOException{
-		FileWriter out = new FileWriter(new File("./target/element.json"));
-		LinkedHashMap map = new LinkedHashMap();
-		map.put("Id", new Long(29));
-		map.put("type","MIME");
-		JSONSerializer.toJSONString(map, out);
-		assertNotNull(out.toString());
-		assertTrue(out.toString().length() > 0);
-		out.close();
+		
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile8.json"),"UTF-8");
+		JSONSerializer.toJSONString(map, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile8.json"), "utf-8"), out.toString());
 	}
 
 }
