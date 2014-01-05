@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
+import com.github.ancosen.easyjson.json.serializer.utils.Utils;
 
 /**
  * 
@@ -40,6 +41,9 @@ public class ParseValue {
 		else if (_obj instanceof Map){
 			new ManageMapOperation(_obj, _out, _json).exec();
 		}
+//		else if (!(Utils.isJDKClass(_obj))){
+//			new ManageClassOperation(_obj, _out, _json).exec();
+//		}
 		else
 			try {
 				_out.write(String.valueOf(_obj));

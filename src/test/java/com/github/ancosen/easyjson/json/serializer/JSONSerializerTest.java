@@ -26,6 +26,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.github.ancosen.easyjson.json.serializer.mock.Example;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONSerializerTest{
 
@@ -141,7 +143,7 @@ public class JSONSerializerTest{
 		obj.put("num", new Integer(100));
 		obj.put("balance", new BigDecimal(1000.21));
 		obj.put("is_vip", new Boolean(true));
-		obj.put("nickname", null);
+		obj.put("nickname", "antonio");
 		LinkedList list = new LinkedList();
 		LinkedList list1 = new LinkedList();
 		LinkedList list2 = new LinkedList();
@@ -273,7 +275,7 @@ public class JSONSerializerTest{
 
 		LinkedHashMap obj2 = new LinkedHashMap();
 		obj2.put("is_vip", new Boolean(true));
-		obj2.put("nickname", null);
+		obj2.put("nickname", "antonio");
 		obj2.put("anotherlist", c);
 		obj2.putAll(obj1);
 
@@ -904,4 +906,23 @@ public class JSONSerializerTest{
 		assertEquals(FileUtils.readFileToString(new File("./target/testFile8.json"), "utf-8"), out.toString());
 	}
 
+	@Test	
+	public void test9() throws IOException{
+		StringWriter out = new StringWriter();
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
+		map.put("type","MIME");
+		map.put("Peppone", new Example(23, "Andrea"));
+		JSONSerializer.toJSONString(map, out);
+		assertTrue(out.toString().length() > 0);
+		assertTrue(out.toString().contains("Id"));
+		assertTrue(out.toString().contains("29"));
+		assertTrue(out.toString().contains("type"));
+		assertTrue(out.toString().contains("MIME"));
+		
+		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile9.json"),"UTF-8");
+		JSONSerializer.toJSONString(map, fileout);
+		
+		assertEquals(FileUtils.readFileToString(new File("./target/testFile9.json"), "utf-8"), out.toString());
+	}
 }
