@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <name>EasyJSON</name>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.easyjson</groupId>
+    <groupId>com.github.ancosen.easyjson</groupId>
     <artifactId>EasyJSON</artifactId>
     <version>0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
