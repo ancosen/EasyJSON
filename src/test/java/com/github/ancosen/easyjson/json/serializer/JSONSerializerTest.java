@@ -26,9 +26,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.github.ancosen.easyjson.classmock.Example;
-import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONSerializerTest{
 
@@ -905,21 +902,6 @@ public class JSONSerializerTest{
 		JSONSerializer.toJSONString(map, fileout);
 		
 		assertEquals(FileUtils.readFileToString(new File("./target/testFile8.json"), "utf-8"), out.toString());
-	}
-	
-	@Test	
-	public void test9() throws IOException{
-		StringWriter out = new StringWriter();
-		LinkedHashMap map = new LinkedHashMap();
-		map.put("Id", new Long(29));
-		map.put("type","MIME");
-		map.put("peppeira", new Example("andrea", 23));
-		JSONSerializer.toJSONString(map, out);
-		assertTrue(out.toString().length() > 0);
-		assertTrue(out.toString().contains("Id"));
-		assertTrue(out.toString().contains("29"));
-		assertTrue(out.toString().contains("type"));
-		assertTrue(out.toString().contains("MIME"));
 	}
 
 }
