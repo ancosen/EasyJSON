@@ -30,6 +30,16 @@ public class JSONSerializer extends HashMap implements IJSONEncodingOperation {
 		super();
 	}
 
+	/**
+	 * Build a JSON object in a Writer. 
+	 * The LinkedHashMap argument must specify a Map to serialize in JSON. 
+	 * The Writer argument is a Writer to build the output JSON String. 
+	 * <p>
+	 *
+	 * @param  map a Map to serialize in JSON
+	 * @param  out a Writer to build the JSON String
+	 * @return      
+	 */
 	public static void toJSONString(LinkedHashMap map, Writer out) {
 		log.info("Start Serializing JSON Object");
 

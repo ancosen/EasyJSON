@@ -960,9 +960,9 @@ public class JSONSerializerTest{
 		map.put("Id", new Long(29));
 		map.put("type","MIME");
 		List p = new ArrayList();
+		for(int i=0;i<10000;i++){
 		p.add(new Example(23, "Andrea"));
-		p.add(new Example(23, "Andrea"));
-		p.add(new Example(23, "Andrea"));
+		}
 		map.put("Subjects", p);
 		map1.put("person", new String("Andrea"));
 		ComplexExample m = new ComplexExample(46, "Company", p, map1);
