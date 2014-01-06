@@ -1,17 +1,21 @@
 package com.github.ancosen.easyjson.json.serializer.mock;
 
-import java.util.Iterator;
-import java.util.Map.Entry;
+import java.util.List;
+import java.util.Map;
 
-public class Example {
+public class ComplexExample {
 
 	int id;
 	String name;
+	List p;
+	Map s;
 
-	public Example(int id, String name) {
+	public ComplexExample(int id, String name, List p, Map s) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.p = p;
+		this.s = s;
 	}
 
 	public int getId() {
@@ -29,19 +33,37 @@ public class Example {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public List getP() {
+		return p;
+	}
+
+	public void setP(List p) {
+		this.p = p;
+	}
+
+	public Map getS() {
+		return s;
+	}
+
+	public void setS(Map s) {
+		this.s = s;
+	}
+
 	@Override
     public String toString() {
 		StringBuilder result = new StringBuilder();
-	    String NEW_LINE = System.getProperty("line.separator");
 
 	    result.append("{");
 	    result.append("id=" + id);
 	    result.append(", ");
 	    result.append("name=" + name);
+	    result.append(", ");
+	    result.append("p=" + p);
+	    result.append(", ");
+	    result.append("s=" + s);
 	    result.append("}");
 	    
 	    return result.toString();
 	}
-
 }

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
+import com.github.ancosen.easyjson.json.serializer.utils.Utils;
 
 public class ManageListOperation implements IManagerOperation{
 
@@ -46,6 +47,9 @@ public class ManageListOperation implements IManagerOperation{
 			else if (element instanceof List) {
 				new ManageListOperation((List) element, _out, _json).exec();
 			} 
+			else if (!(Utils.isJDKClass(element))){
+				new ManageClassOperation(element, _out, _json).exec();
+			}
 			else {
 				try {
 					_out.write(String.valueOf(element));

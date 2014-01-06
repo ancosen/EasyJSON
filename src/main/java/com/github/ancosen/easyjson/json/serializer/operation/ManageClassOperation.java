@@ -1,6 +1,7 @@
 package com.github.ancosen.easyjson.json.serializer.operation;
 
 import java.io.Writer;
+import java.util.LinkedHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ public class ManageClassOperation implements IManagerOperation{
 	private Object _obj;
 	private Writer _out;
 	private JSONSerializer _json;
-	private static Logger log = LoggerFactory.getLogger(ManageListOperation.class);
+	private static Logger log = LoggerFactory.getLogger(ManageClassOperation.class);
 	
 	public ManageClassOperation(Object obj, Writer out, JSONSerializer json) {
 		super();
@@ -23,8 +24,9 @@ public class ManageClassOperation implements IManagerOperation{
 	}
 	
 	public void exec() {
-		System.err.println("Class: " + _obj.getClass());
-		new IntrospectObject(_obj).analyze();
+		LinkedHashMap classMap = new LinkedHashMap();
+		new IntrospectObject(_obj,classMap).analyze();
+		new ParseValue(classMap, _out, _json).parseValue();
 	}
 	
 }

@@ -24,6 +24,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
+import com.github.ancosen.easyjson.json.serializer.mock.ComplexExample;
+import com.github.ancosen.easyjson.json.serializer.mock.Example;
 import com.google.gson.Gson;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -39,15 +41,14 @@ public class ComparisonTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		Object[][] data = new Object[][] { { 50 }, { 100 }, { 200 }, { 500 },
-				{ 1000 }, { 2000 }, { 5000 }, { 10000 }};
+				{ 1000 }, { 2000 }, { 5000 }, { 10000 } };
 		return Arrays.asList(data);
 	}
 
 	@Test
 	public void testComparison1() throws JsonGenerationException,
 			JsonMappingException, IOException {
-		System.err
-				.println("----------------------------------------------------");
+		System.err.println("----------------------------------------------------");
 		System.err.println("Test Comparison 1 with parameter " + number);
 		StringWriter out = new StringWriter();
 
@@ -119,8 +120,7 @@ public class ComparisonTest {
 		JSONSerializer.toJSONString(map, out);
 		jsonEasyjson = out.toString();
 		long end = System.nanoTime();
-		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000
-				+ " MicroSeconds");
+		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000 + " MicroSeconds");
 
 		long startJackson = System.nanoTime();
 		jsonJackson = mapper.writeValueAsString(map);
@@ -131,8 +131,7 @@ public class ComparisonTest {
 		long startGson = System.nanoTime();
 		jsonGson = gson.toJson(map);
 		long endGson = System.nanoTime();
-		System.out.println("Gson Encoder toke " + (endGson - startGson) / 1000
-				+ " MicroSeconds");
+		System.out.println("Gson Encoder toke " + (endGson - startGson) / 1000 + " MicroSeconds");
 
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -140,15 +139,13 @@ public class ComparisonTest {
 		assertEquals(jsonEasyjson, jsonJackson);
 		assertEquals(jsonEasyjson, jsonGson);
 
-		System.err
-				.println("----------------------------------------------------");
+		System.err.println("----------------------------------------------------");
 	}
 
 	@Test
 	public void testComparison2() throws JsonGenerationException,
 			JsonMappingException, IOException {
-		System.err
-				.println("----------------------------------------------------");
+		System.err.println("----------------------------------------------------");
 
 		System.err.println("Test Comparison 2 with parameter " + number);
 		StringWriter out = new StringWriter();
@@ -224,20 +221,17 @@ public class ComparisonTest {
 		long start = System.nanoTime();
 		JSONSerializer.toJSONString(map, out);
 		long end = System.nanoTime();
-		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000
-				+ " MicroSeconds");
+		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000 + " MicroSeconds");
 
 		long startJackson = System.nanoTime();
 		jsonJackson = mapper.writeValueAsString(map);
 		long endJackson = System.nanoTime();
-		System.out.println("Jackson Encoder toke "
-				+ (endJackson - startJackson) / 1000 + " MicroSeconds");
+		System.out.println("Jackson Encoder toke " + (endJackson - startJackson) / 1000 + " MicroSeconds");
 
 		long startGson = System.nanoTime();
 		jsonGson = gson.toJson(map);
 		long endGson = System.nanoTime();
-		System.out.println("Gson Encoder toke " + (endGson - startGson) / 1000
-				+ " MicroSeconds");
+		System.out.println("Gson Encoder toke " + (endGson - startGson) / 1000 + " MicroSeconds");
 
 		assertNotNull(out.toString());
 		assertTrue(out.toString().length() > 0);
@@ -245,7 +239,105 @@ public class ComparisonTest {
 		assertEquals(out.toString(), jsonJackson);
 		assertEquals(out.toString(), jsonGson);
 
-		System.err
-				.println("----------------------------------------------------");
+		System.err.println("----------------------------------------------------");
+	}
+	
+	@Test
+	public void testComparison3() throws JsonGenerationException, JsonMappingException, IOException{
+		System.err.println("----------------------------------------------------");
+		System.err.println("Test Comparison 3 with parameter " + number);
+		StringWriter out = new StringWriter();
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
+		map.put("type","MIME");
+		List p = new ArrayList();
+		for (int i=0;i<number;i++){
+			p.add(new Example(23, "Andrea"));
+		}
+		map.put("Subject", p);
+
+		System.err.println("Map Size: " + map.size());
+		System.err.println("Map Keyset Size: " + map.keySet().size());
+
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonJackson = "";
+
+		Gson gson = new Gson();
+		String jsonGson = "";
+
+		String jsonEasyjson = "";
+
+		long start = System.nanoTime();
+		JSONSerializer.toJSONString(map, out);
+		long end = System.nanoTime();
+		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000 + " MicroSeconds");
+
+		long startJackson = System.nanoTime();
+		jsonJackson = mapper.writeValueAsString(map);
+		long endJackson = System.nanoTime();
+		System.out.println("Jackson Encoder toke " + (endJackson - startJackson) / 1000 + " MicroSeconds");
+
+		long startGson = System.nanoTime();
+		jsonGson = gson.toJson(map);
+		long endGson = System.nanoTime();
+		System.out.println("Gson Encoder toke " + (endGson - startGson) / 1000 + " MicroSeconds");
+		
+		assertNotNull(out.toString());
+		assertTrue(out.toString().length() > 0);
+		assertEquals(out.toString(), jsonJackson);
+		assertEquals(out.toString(), jsonGson);
+
+		System.err.println("----------------------------------------------------");
+	}
+	
+	@Test
+	public void testComparison4() throws JsonGenerationException, JsonMappingException, IOException{
+		System.err.println("----------------------------------------------------");
+		System.err.println("Test Comparison 4 with parameter " + number);
+		StringWriter out = new StringWriter();
+		LinkedHashMap map1 = new LinkedHashMap();
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
+		map.put("type","MIME");
+		List p = new ArrayList();
+		for (int i=0;i<number;i++){
+			p.add(new Example(23, "Andrea"));
+		}
+		map.put("Subjects", p);
+		ComplexExample m = new ComplexExample(46, "Company", p, map1);
+		map.put("Complex",m);
+
+		System.err.println("Map Size: " + map.size());
+		System.err.println("Map Keyset Size: " + map.keySet().size());
+
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonJackson = "";
+
+		Gson gson = new Gson();
+		String jsonGson = "";
+
+		String jsonEasyjson = "";
+
+		long start = System.nanoTime();
+		JSONSerializer.toJSONString(map, out);
+		long end = System.nanoTime();
+		System.out.println("EasyJSON Encoder toke " + (end - start) / 1000 + " MicroSeconds");
+
+		long startJackson = System.nanoTime();
+		jsonJackson = mapper.writeValueAsString(map);
+		long endJackson = System.nanoTime();
+		System.out.println("Jackson Encoder toke " + (endJackson - startJackson) / 1000 + " MicroSeconds");
+
+		long startGson = System.nanoTime();
+		jsonGson = gson.toJson(map);
+		long endGson = System.nanoTime();
+		System.out.println("Gson Encoder toke " + (endGson - startGson) / 1000 + " MicroSeconds");
+		
+		assertNotNull(out.toString());
+		assertTrue(out.toString().length() > 0);
+		assertEquals(out.toString(), jsonJackson);
+		assertEquals(out.toString(), jsonGson);
+
+		System.err.println("----------------------------------------------------");
 	}
 }

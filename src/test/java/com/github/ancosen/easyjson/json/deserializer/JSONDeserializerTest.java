@@ -2,6 +2,7 @@ package com.github.ancosen.easyjson.json.deserializer;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -18,6 +19,8 @@ import org.junit.runners.MethodSorters;
 
 import com.github.ancosen.easyjson.json.deserializer.JSONDeserializer;
 import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
+import com.github.ancosen.easyjson.json.serializer.mock.ComplexExample;
+import com.github.ancosen.easyjson.json.serializer.mock.Example;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONDeserializerTest {
@@ -134,7 +137,60 @@ public class JSONDeserializerTest {
 		assertTrue(equalMaps(map, (Map) jsonParser));
 
 	}
+	
+	@Test
+	public void test4() throws IOException, ParseException{
+		StringWriter out = new StringWriter();
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
+		map.put("type","MIME");
+		List p = new ArrayList();
+		p.add(new Example(23, "Andrea"));
+		p.add(new Example(23, "Andrea"));
+		p.add(new Example(23, "Andrea"));
+		map.put("Subject", p);
+		JSONSerializer.toJSONString(map, out);
+		assertNotNull(out.toString());
+		assertTrue(out.toString().length() > 0);
+		assertTrue(out.toString().contains("Id"));
+		assertTrue(out.toString().contains("29"));
+		assertTrue(out.toString().contains("type"));
+		assertTrue(out.toString().contains("MIME"));
+		
+		Object jsonParser = new JSONDeserializer(out.toString()).parse();
 
+		assertEquals(map.toString(), jsonParser.toString());
+
+	}
+	
+	@Test
+	public void test5() throws IOException, ParseException{
+		StringWriter out = new StringWriter();
+		LinkedHashMap map1 = new LinkedHashMap();
+		LinkedHashMap map = new LinkedHashMap();
+		map.put("Id", new Long(29));
+		map.put("type","MIME");
+		List p = new ArrayList();
+		p.add(new Example(23, "Andrea"));
+		p.add(new Example(23, "Andrea"));
+		p.add(new Example(23, "Andrea"));
+		map.put("Subjects", p);
+		map1.put("person", new String("Andrea"));
+		ComplexExample m = new ComplexExample(46, "Company", p, map1);
+		map.put("Complex",m);
+		JSONSerializer.toJSONString(map, out);
+		assertTrue(out.toString().length() > 0);
+		assertTrue(out.toString().contains("Id"));
+		assertTrue(out.toString().contains("29"));
+		assertTrue(out.toString().contains("type"));
+		assertTrue(out.toString().contains("MIME"));
+		
+		Object jsonParser = new JSONDeserializer(out.toString()).parse();
+
+		assertEquals(map.toString(), jsonParser.toString());
+
+	}
+	
 	public boolean equalMaps(Map<?, ?> map1, Map<?, ?> map2) {
 
 		if (map1 == null || map2 == null || map1.size() != map2.size()) {

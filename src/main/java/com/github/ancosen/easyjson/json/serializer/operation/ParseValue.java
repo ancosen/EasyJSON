@@ -41,9 +41,9 @@ public class ParseValue {
 		else if (_obj instanceof Map){
 			new ManageMapOperation(_obj, _out, _json).exec();
 		}
-//		else if (!(Utils.isJDKClass(_obj))){
-//			new ManageClassOperation(_obj, _out, _json).exec();
-//		}
+		else if (!(Utils.isJDKClass(_obj))){
+			new ManageClassOperation(_obj, _out, _json).exec();
+		}
 		else
 			try {
 				_out.write(String.valueOf(_obj));
