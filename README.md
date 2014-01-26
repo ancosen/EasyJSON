@@ -30,7 +30,7 @@ This is a really base version, there is so much work to do.
 
 Build a JSON object with EasyJSON is very simple. Take a look at this example:
 
-```
+```java
 		StringWriter out = new StringWriter();
 		List p = new ArrayList();
 		for (int i = 0; i < 10; i++) {
@@ -60,7 +60,7 @@ Build a JSON object with EasyJSON is very simple. Take a look at this example:
 
 in the StringWriter out object we have the following JSON string:
 
-```
+```java
 {
     "is_vip": true,
     "nickname": "anthony",
@@ -91,7 +91,7 @@ in the StringWriter out object we have the following JSON string:
 
 Using an OutputStreamWriter it's also possible to write the JSON string on File
 
-```
+```java
 		OutputStreamWriter fileout = new OutputStreamWriter(new FileOutputStream("./target/testFile7.json"),"UTF-8");
 		JSONSerializer.toJSONString(obj2, fileout);
 ```
