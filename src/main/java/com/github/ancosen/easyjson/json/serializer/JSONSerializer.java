@@ -20,10 +20,14 @@ import com.github.ancosen.easyjson.json.serializer.operation.ParseValue;
  * 
  */
 
+/**
+ * Writes a JSON serialized String from a Map to a Writer.
+ */
 public class JSONSerializer extends HashMap implements IJSONEncodingOperation {
 
-	private static final long serialVersionUID = 1L;
-
+    /**
+     * Slf4j Logger
+     */
 	private static Logger log = LoggerFactory.getLogger(JSONSerializer.class);
 
 	public JSONSerializer() {

@@ -276,7 +276,7 @@ public class JSONSerializerTest{
 
 		LinkedHashMap obj2 = new LinkedHashMap();
 		obj2.put("is_vip", new Boolean(true));
-		obj2.put("nickname", "antonio");
+		obj2.put("nickname", "anthony");
 		obj2.put("anotherlist", c);
 		obj2.putAll(obj1);
 
