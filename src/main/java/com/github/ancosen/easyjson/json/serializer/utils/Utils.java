@@ -2,6 +2,7 @@ package com.github.ancosen.easyjson.json.serializer.utils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ public class Utils {
         SIMPLE_MAP.put(BigDecimal.class.getName(), BigDecimal.class);
         SIMPLE_MAP.put(Long.class.getName(), Long.class);
         SIMPLE_MAP.put(Integer.class.getName(), Integer.class);
+        SIMPLE_MAP.put(Date.class.getName(), Date.class);
     }
 
 public static Class<?> getClassType(Object arg, boolean substPrimitiveWrapper){
