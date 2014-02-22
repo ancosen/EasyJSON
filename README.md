@@ -28,7 +28,7 @@ This is a really base version, there is so much work to do.
 
 ## <a name='Examples'>Examples</a>
 
-Build a JSON object with EasyJSON is very simple. Take a look at this example:
+Build a JSON object with EasyJSON is very simple. Take a look at this simple example:
 
 ```java
 		StringWriter out = new StringWriter();
