@@ -92,11 +92,11 @@ public class JSONSerializerComplexTest {
 		
 		List array = new ArrayList();
 		
-		for (int i=0;i<50;i++){
+		for (int i=0;i<2;i++){
 			array.add(p);
 		}
 		
-		Group r = new Group("domino", array);
+		Group r = new Group("jboss", array);
 		
 		map.put("world", r);
 		JSONSerializer.toJSONString(map, out);
