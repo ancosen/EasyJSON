@@ -135,8 +135,7 @@ public class JSONSerializerComplexTest {
 		p.setPhoneNumber(phoneNumberList);
 		
 		map.put("person1", p);
-		
-		
+			
 		JSONSerializer.toJSONString(map, out);
 		assertTrue(out.toString().length() > 0);
 		
