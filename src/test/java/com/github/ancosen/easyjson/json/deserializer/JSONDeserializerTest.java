@@ -22,7 +22,7 @@ import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
 import com.github.ancosen.easyjson.json.serializer.mock.ComplexExample;
 import com.github.ancosen.easyjson.json.serializer.mock.Example;
 import com.github.ancosen.easyjson.json.serializer.mock.Group;
-import com.github.ancosen.easyjson.json.serializer.mock.Person;
+import com.github.ancosen.easyjson.json.serializer.mock.PersonSimple;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONDeserializerTest {

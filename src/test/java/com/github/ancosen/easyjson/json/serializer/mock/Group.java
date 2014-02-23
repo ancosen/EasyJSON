@@ -7,9 +7,9 @@ public class Group {
 
 	String group = "";
 	
-	List<Person> personList = new ArrayList();
+	List<PersonSimple> personList = new ArrayList();
 
-	public Group(String group, List<Person> personList) {
+	public Group(String group, List<PersonSimple> personList) {
 		super();
 		this.group = group;
 		this.personList = personList;
@@ -23,11 +23,11 @@ public class Group {
 		this.group = group;
 	}
 
-	public List<Person> getPersonList() {
+	public List<PersonSimple> getPersonList() {
 		return personList;
 	}
 
-	public void setPersonList(List<Person> personList) {
+	public void setPersonList(List<PersonSimple> personList) {
 		this.personList = personList;
 	}
 }

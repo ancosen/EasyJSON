@@ -2,7 +2,7 @@ package com.github.ancosen.easyjson.json.serializer.mock;
 
 import java.util.Date;
 
-public class Person {
+public class PersonSimple {
 	
 	private String name = "";
 	
@@ -13,7 +13,7 @@ public class Person {
 	private String birthDate = "";
 
 	
-	public Person(String name, String surname, String taxcode, Date birthDate) {
+	public PersonSimple(String name, String surname, String taxcode, Date birthDate) {
 		super();
 		this.name = name;
 		this.surname = surname;
