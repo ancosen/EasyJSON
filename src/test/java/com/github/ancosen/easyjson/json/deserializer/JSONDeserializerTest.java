@@ -1,28 +1,30 @@
 package com.github.ancosen.easyjson.json.deserializer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.github.ancosen.easyjson.json.deserializer.JSONDeserializer;
 import com.github.ancosen.easyjson.json.serializer.JSONSerializer;
 import com.github.ancosen.easyjson.json.serializer.mock.ComplexExample;
 import com.github.ancosen.easyjson.json.serializer.mock.Example;
-import com.github.ancosen.easyjson.json.serializer.mock.Group;
-import com.github.ancosen.easyjson.json.serializer.mock.PersonSimple;
+import com.github.ancosen.easyjson.json.serializer.mock.addressbook.Address;
+import com.github.ancosen.easyjson.json.serializer.mock.addressbook.Person;
+import com.github.ancosen.easyjson.json.serializer.mock.addressbook.PhoneNumber;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JSONDeserializerTest {

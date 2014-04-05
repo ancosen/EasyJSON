@@ -53,5 +53,11 @@ public class Person {
 	public void setPhoneNumber(List phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", surname=" + surname + ", age=" + age
+				+ ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
+	}
 	
 }

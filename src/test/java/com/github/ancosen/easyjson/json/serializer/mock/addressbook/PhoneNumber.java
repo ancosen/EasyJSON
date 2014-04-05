@@ -21,4 +21,10 @@ public class PhoneNumber {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
+	@Override
+	public String toString() {
+		return "PhoneNumber [type=" + type + ", number=" + number + "]";
+	}
+	
 }
